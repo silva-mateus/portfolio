@@ -1,0 +1,486 @@
+{
+  "navigation": {
+    "pt": [
+      { "id": "sobre", "label": "Sobre" },
+      { "id": "skills", "label": "Skills" },
+      { "id": "experiencia", "label": "Experiência" },
+      { "id": "projetos", "label": "Projetos" },
+      { "id": "contato", "label": "Contato" }
+    ],
+    "en": [
+      { "id": "sobre", "label": "About" },
+      { "id": "skills", "label": "Skills" },
+      { "id": "experiencia", "label": "Experience" },
+      { "id": "projetos", "label": "Projects" },
+      { "id": "contato", "label": "Contact" }
+    ],
+    "es": [
+      { "id": "sobre", "label": "Sobre mí" },
+      { "id": "skills", "label": "Habilidades" },
+      { "id": "experiencia", "label": "Experiencia" },
+      { "id": "projetos", "label": "Proyectos" },
+      { "id": "contato", "label": "Contacto" }
+    ]
+  },
+  "hero": {
+    "photo": "assets/images/mateus.jpeg",
+    "pt": {
+      "greeting": "Olá, eu sou",
+      "name": "Mateus Silva",
+      "title": "Engenheiro Backend • Cloud • Dados",
+      "description": "Business System Analyst Lead com forte atuação em backend, análise de dados e sistemas de billing. Experiência em ambientes de produção complexos, liderança técnica e resolução de problemas de alto impacto.",
+      "cta_primary": "Entre em Contato",
+      "cta_secondary": "Ver Projetos"
+    },
+    "en": {
+      "greeting": "Hello, I am",
+      "name": "Mateus Silva",
+      "title": "Backend Engineer • Cloud • Data",
+      "description": "Business System Analyst Lead with strong expertise in backend development, data analysis, and billing systems. Experienced in complex production environments, technical leadership, and high-impact problem solving.",
+      "cta_primary": "Get in Touch",
+      "cta_secondary": "View Projects"
+    },
+    "es": {
+      "greeting": "Hola, soy",
+      "name": "Mateus Silva",
+      "title": "Ingeniero Backend • Cloud • Datos",
+      "description": "Business System Analyst Lead con fuerte experiencia en backend, análisis de datos y sistemas de facturación. Experiencia en entornos de producción complejos, liderazgo técnico y resolución de problemas de alto impacto.",
+      "cta_primary": "Contáctame",
+      "cta_secondary": "Ver Proyectos"
+    }
+  },
+  "about": {
+    "pt": {
+      "title": "Sobre Mim",
+      "paragraphs": [
+        "Sou Business System Analyst Lead com mais de 6 anos de experiência atuando em sistemas corporativos de grande escala, com foco em billing, análise de dados e operações críticas. Sou responsável por liderar times, tomar decisões técnicas em incidentes de produção e garantir a excelência operacional dos sistemas sob minha responsabilidade.",
+        "Tenho forte background em resolução de problemas, uso de ferramentas de automação, análise de dados e arquitetura de sistemas, sempre conectando decisões técnicas às necessidades do negócio. Além do trabalho corporativo, sou entusiasta de tecnologia, automação e IA, com projetos práticos como construção e automação de homelab."
+      ],
+      "stats": [
+        { "number": "6+", "label": "Anos de Experiência" },
+        { "number": "80%", "label": "Redução de Erros" },
+        { "number": "10+", "label": "Projetos" }
+      ]
+    },
+    "en": {
+      "title": "About Me",
+      "paragraphs": [
+        "I am a Business System Analyst Lead with over 6 years of experience working on large-scale enterprise systems, focused on billing platforms, data analysis, and critical operations. I currently work as a Billing Systems Analyst Lead, responsible for team leadership, technical decision-making during production incidents, and ensuring operational excellence.",
+        "I have a strong background in problem solving, use of automation tools, data analysis, and system architecture, always aligning technical decisions with business needs. Outside corporate work, I am passionate about technology, automation, and AI, with hands-on projects such as building and automating my own homelab."
+      ],
+      "stats": [
+        { "number": "6+", "label": "Years of Experience" },
+        { "number": "80%", "label": "Error Reduction" },
+        { "number": "10+", "label": "Projects" }        
+      ]
+    },
+    "es": {
+      "title": "Sobre Mí",
+      "paragraphs": [
+        "Soy Business System Analyst Lead con más de 6 años de experiencia trabajando en sistemas corporativos de gran escala, enfocado en facturación, análisis de datos y operaciones críticas. Soy responsable de liderar equipos, tomar decisiones técnicas en incidentes de producción y garantizar la excelencia operacional de los sistemas bajo mi responsabilidad.",
+        "Tengo un fuerte background en resolución de problemas, uso de herramientas de automatización, análisis de datos y arquitectura de sistemas, siempre conectando decisiones técnicas con las necesidades del negocio. Además del trabajo corporativo, soy entusiasta de la tecnología, automatización e IA, con proyectos prácticos como construcción y automatización de homelab."
+      ],
+      "stats": [
+        { "number": "6+", "label": "Años de Experiencia" },
+        { "number": "80%", "label": "Reducción de Errores" },
+        { "number": "10+", "label": "Proyectos" }
+      ]
+    }
+  },
+  "skills": {
+    "pt": {
+      "title": "Competências Técnicas",
+      "categories": [
+        {
+          "title": "Backend & Linguagens",
+          "items": [
+            { "name": "Python", "level": 95 },
+            { "name": "C / C++ / C#", "level": 85 },
+            { "name": "POO", "level": 90 },
+            { "name": "Javascript / Node.js", "level": 65 },
+            { "name": ".NET", "level": 30 }
+          ]
+        },
+        {
+          "title": "Cloud & DevOps",
+          "items": [
+            { "name": "Git", "level": 95 },
+            { "name": "Unix / Bash", "level": 90 },
+            { "name": "CI/CD", "level": 85 },
+            { "name": "AWS", "level": 80 },
+            { "name": "AWS Lambda", "level": 70 }
+          ]
+        },
+        {
+          "title": "Dados & Bancos",
+          "items": [
+            { "name": "SQL (MySQL, SQLite)", "level": 95 },
+            { "name": "NoSQL", "level": 80 },
+            { "name": "Análise de Dados", "level": 90 },
+            { "name": "Python Data Stack", "level": 85 },
+            { "name": "Excel Avançado", "level": 90 }
+          ]
+        },
+        {
+          "title": "Arquitetura & Sistemas",
+          "items": [
+            { "name": "Sistemas de Billing", "level": 95 },
+            { "name": "Monitoramento de Sistemas", "level": 90 },
+            { "name": "Troubleshooting", "level": 95 },
+            { "name": "Automação de Processos", "level": 85 },
+            { "name": "Orquestração de Containers", "level": 70 }
+          ]
+        },
+        {
+          "title": "Idiomas",
+          "items": [
+            { "name": "Português (Nativo)", "level": 100 },
+            { "name": "Inglês (Fluente)", "level": 95 },
+            { "name": "Espanhol (Fluente)", "level": 95 }
+          ]
+        }
+      ]
+    },
+    "en": {
+      "title": "Technical Skills",
+      "categories": [
+        {
+          "title": "Backend & Languages",
+          "items": [
+            { "name": "Python", "level": 95 },
+            { "name": "C / C++ / C#", "level": 85 },
+            { "name": "OOP", "level": 90 },
+            { "name": "Javascript / Node.js", "level": 70 },
+            { "name": ".NET", "level": 60 }
+          ]
+        },
+        {
+          "title": "Cloud & DevOps",
+          "items": [
+            { "name": "Git", "level": 95 },
+            { "name": "Unix / Bash", "level": 90 },
+            { "name": "CI/CD", "level": 85 },
+            { "name": "AWS", "level": 80 },
+            { "name": "AWS Lambda", "level": 70 }
+          ]
+        },
+        {
+          "title": "Data & Databases",
+          "items": [
+            { "name": "SQL (MySQL, SQLite)", "level": 95 },
+            { "name": "NoSQL", "level": 80 },
+            { "name": "Data Analysis", "level": 90 },
+            { "name": "Python Data Stack", "level": 85 },
+            { "name": "Advanced Excel", "level": 90 }
+          ]
+        },
+        {
+          "title": "Architecture & Systems",
+          "items": [
+            { "name": "Billing Systems", "level": 95 },
+            { "name": "System Monitoring", "level": 90 },
+            { "name": "Troubleshooting", "level": 95 },
+            { "name": "Process Automation", "level": 85 },
+            { "name": "Container Orchestration", "level": 70 }
+          ]
+        },
+        {
+          "title": "Languages",
+          "items": [
+            { "name": "Portuguese (Native)", "level": 100 },
+            { "name": "English (Fluent)", "level": 95 },
+            { "name": "Spanish (Fluent)", "level": 95 }
+          ]
+        }
+      ]
+    }
+  },
+  "experience": {
+    "pt": {
+      "title": "Experiência Profissional",
+      "items": [
+        {
+          "date": "Jul 2025 - Presente",
+          "title": "Billing Systems Analyst Lead",
+          "company": "CSG International",
+          "description": [
+            "Liderança de equipe e coordenação das atividades de produção em sistemas de billing críticos",
+            "Criação e condução de treinamentos técnicos para times internos e clientes",
+            "Ponto principal de escalonamento para incidentes críticos, com tomada de decisões técnicas rápidas",
+            "Coordenação de ciclos mensais de billing com alto nível de precisão e zero downtime"
+          ],
+          "tags": ["Liderança", "Billing", "Python", "SQL", "C++", "AWS"]
+        },
+        {
+          "date": "Jan 2023 - Jul 2025",
+          "title": "Billing Systems Analyst Senior",
+          "company": "CSG International",
+          "description": [
+            "Implementação de novos procedimentos de billing, reduzindo erros operacionais em 80%",
+            "Primeiro nível de escalonamento para clientes Managed Services em incidentes de produção",
+            "Análise avançada de dados usando Python, SQL, Unix e Excel para tomada de decisão",
+            "Forte colaboração cross-funcional com times de desenvolvimento, operações e clientes"
+          ],
+          "tags": ["Python", "SQL", "C++", "Unix", "Data Analysis", "Billing"]
+        },
+        {
+          "date": "Abr 2022 - Jan 2023",
+          "title": "Software Development Engineer I",
+          "company": "CSG International",
+          "description": [
+            "Desenvolvimento backend em sistemas corporativos de mediação e billing",
+            "Análise de requisitos técnicos e funcionais, estimativa de esforço e comunicação com liderança",
+            "Deploy em produção, troubleshooting e suporte a incidentes críticos",
+            "Mentoria de desenvolvedores juniores em boas práticas de código e arquitetura"
+          ],
+          "tags": ["Backend", "C++", ".NET", "SQL", "Mentoria"]
+        },
+        {
+          "date": "Nov 2019 - Abr 2022",
+          "title": "Software Development Engineer (Graduate)",
+          "company": "CSG International",
+          "description": [
+            "Customização de soluções de mediação de dados para clientes enterprise",
+            "Participação completa no ciclo de vida do projeto: análise, desenvolvimento, testes e deploy",
+            "Interação direta com clientes para levantamento de requisitos e testes de aceitação"
+          ],
+          "tags": ["C++", "SQL", "Data Mediation", "Customer Facing"]
+        }
+      ]
+    },
+    "en": {
+      "title": "Professional Experience",
+      "items": [
+        {
+          "date": "Jul 2025 - Present",
+          "title": "Billing Systems Analyst Lead",
+          "company": "CSG International",
+          "description": [
+            "Team leadership and production coordination for mission-critical billing systems",
+            "Design and delivery of technical training sessions for internal teams and customers",
+            "Primary escalation point for critical production incidents with fast technical decision-making",
+            "Coordination of monthly billing cycles with high accuracy and zero downtime"
+          ],
+          "tags": ["Leadership", "Billing", "Python", "SQL", "C++", "AWS"]
+        },
+        {
+          "date": "Jan 2023 - Jul 2025",
+          "title": "Senior Billing Systems Analyst",
+          "company": "CSG International",
+          "description": [
+            "Led implementation of new billing procedures, reducing operational errors by 80%",
+            "First-level escalation support for Managed Services customers on production incidents",
+            "Advanced data analysis using Python, SQL, Unix, and Excel for decision-making",
+            "Strong cross-functional collaboration with development, operations, and customer teams"
+          ],
+          "tags": ["Python", "SQL", "C++", "Unix", "Data Analysis", "Billing"]
+        },
+        {
+          "date": "Apr 2022 - Jan 2023",
+          "title": "Software Development Engineer I",
+          "company": "CSG International",
+          "description": [
+            "Backend development in enterprise mediation and billing systems",
+            "Technical and functional requirements analysis, effort estimation, and leadership communication",
+            "Production deployments, troubleshooting, and critical incident support",
+            "Mentorship of junior developers in code best practices and architecture"
+          ],
+          "tags": ["Backend", "C++", ".NET", "SQL", "Mentorship"]
+        },
+        {
+          "date": "Nov 2019 - Apr 2022",
+          "title": "Software Development Engineer (Graduate)",
+          "company": "CSG International",
+          "description": [
+            "Customization of data mediation solutions for enterprise customers",
+            "Full project lifecycle participation: analysis, development, testing, and deployment",
+            "Direct customer interaction for requirements gathering and acceptance testing"
+          ],
+          "tags": ["C++", "SQL", "Data Mediation", "Customer Facing"]
+        }
+      ]
+    }
+  },
+  "projects": {
+    "pt": {
+      "title": "Projetos em Destaque",
+      "items": [
+        {
+          "title": "Otimização de Sistemas de Billing Legacy",
+          "icon": "payment",
+          "context": "Sistemas legados de billing apresentavam alta taxa de erros operacionais (>20%) e processos manuais extensos, impactando SLAs e satisfação do cliente.",
+          "challenge": "Redesenhar procedimentos operacionais, automatizar validações e garantir confiabilidade em ambiente de produção com zero tolerância a falhas financeiras.",
+          "solution": "Implementação de novos procedimentos, automação de validações com Python/SQL, criação de dashboards de monitoramento e treinamento de equipe.",
+          "results": [
+            "Redução de 80% nos erros operacionais",
+            "100% de conformidade nos ciclos de billing",
+            "Diminuição de 60% no tempo de resolução de incidentes"
+          ],
+          "tags": ["Python", "SQL", "C++", "Billing", "Process Automation", "Leadership"]
+        },
+        {
+          "title": "Pipelines de Análise de Dados em Produção",
+          "icon": "database",
+          "context": "Necessidade de análise rápida de grandes volumes de dados de billing para troubleshooting e tomada de decisão em incidentes críticos.",
+          "challenge": "Criar ferramentas que processem milhões de registros rapidamente, com resultados precisos e interface simples para times operacionais.",
+          "solution": "Desenvolvimento de scripts Python otimizados, queries SQL complexas e automações Unix para análise e validação de dados em produção.",
+          "results": [
+            "Redução de horas para minutos na análise de dados",
+            "Identificação proativa de inconsistências antes do impacto",
+            "Ferramentas reutilizadas por múltiplos times"
+          ],
+          "tags": ["Python", "SQL", "C++", "Unix", "Data Analysis", "Automation"]
+        },
+        {
+          "title": "Infraestrutura Cloud e Automação",
+          "icon": "monitoring",
+          "context": "Projetos pessoais de homelab e automação para estudo de tecnologias cloud-native e IA.",
+          "challenge": "Construir infraestrutura escalável, automatizada e de baixo custo para experimentação com serviços cloud e machine learning.",
+          "solution": "Arquitetura baseada em AWS (Lambda, S3, EC2), automação com Python/Bash, CI/CD com GitHub Actions e monitoramento.",
+          "results": [
+            "Ambiente de aprendizado hands-on totalmente funcional",
+            "Automação completa de deploy e configuração",
+            "Experimentação com IA e análise de dados"
+          ],
+          "tags": ["AWS", "Lambda", "Python", "C++", "CI/CD", "Automation"]
+        }
+      ]
+    },
+    "en": {
+      "title": "Featured Projects",
+      "items": [
+        {
+          "title": "Legacy Billing Systems Optimization",
+          "icon": "payment",
+          "context": "Legacy billing systems had high operational error rates (>20%) and extensive manual processes, impacting SLAs and customer satisfaction.",
+          "challenge": "Redesign operational procedures, automate validations, and ensure reliability in production with zero tolerance for financial failures.",
+          "solution": "Implementation of new procedures, automation of validations with Python/SQL, creation of monitoring dashboards, and team training.",
+          "results": [
+            "80% reduction in operational errors",
+            "100% compliance in billing cycles",
+            "60% decrease in incident resolution time"
+          ],
+          "tags": ["Python", "SQL", "C++", "Billing", "Process Automation", "Leadership"]
+        },
+        {
+          "title": "Production Data Analysis Pipelines",
+          "icon": "database",
+          "context": "Need for fast analysis of large billing data volumes for troubleshooting and decision-making during critical incidents.",
+          "challenge": "Create tools that process millions of records quickly, with accurate results and simple interface for operational teams.",
+          "solution": "Development of optimized Python scripts, complex SQL queries, and Unix automations for data analysis and validation in production.",
+          "results": [
+            "Reduced analysis time from hours to minutes",
+            "Proactive identification of inconsistencies before impact",
+            "Tools reused across multiple teams"
+          ],
+          "tags": ["Python", "SQL", "C++", "Unix", "Data Analysis", "Automation"]
+        },
+        {
+          "title": "Cloud Infrastructure and Automation (Homelab)",
+          "icon": "monitoring",
+          "context": "Personal homelab and automation projects for studying cloud-native technologies and AI.",
+          "challenge": "Build scalable, automated, and cost-effective infrastructure for experimentation with cloud services and machine learning.",
+          "solution": "AWS-based architecture (Lambda, S3, EC2), automation with Python/Bash, CI/CD with GitHub Actions, and monitoring.",
+          "results": [
+            "Fully functional hands-on learning environment",
+            "Complete deployment and configuration automation",
+            "Experimentation with AI and data analysis"
+          ],
+          "tags": ["AWS", "Lambda", "Python", "CI/CD", "Automation"]
+        }
+      ]
+    }
+  },
+  "education": {
+    "pt": {
+      "title": "Formação Acadêmica",
+      "items": [
+        {
+          "degree": "Pós-graduação em Data Science e Inteligência Artificial",
+          "institution": "UNINTER",
+          "date": "2024",
+          "highlight": "Especialização em machine learning, análise de dados e aplicações de IA em ambientes corporativos."
+        },
+        {
+          "degree": "Pós-graduação em Enterprise Resource Planning (ERP)",
+          "institution": "UNINTER",
+          "date": "2023",
+          "highlight": "Foco em sistemas integrados de gestão, processos empresariais e arquitetura de sistemas ERP."
+        },
+        {
+          "degree": "ITIL V4 Foundation",
+          "institution": "ITIL",
+          "date": "2021",
+          "highlight": "Certificação ITIL V4 Foundation, baseada em ITIL v4."
+        },
+        {
+          "degree": "Licenciatura em Física",
+          "institution": "Universidade Estadual de Londrina",
+          "date": "2019",
+          "highlight": "Base sólida em lógica, matemática aplicada e pensamento analítico."
+        }
+      ]
+    },
+    "en": {
+      "title": "Education",
+      "items": [
+        {
+          "degree": "Postgraduate Degree in Data Science and Artificial Intelligence",
+          "institution": "UNINTER",
+          "date": "2024",
+          "highlight": "Specialization in machine learning, data analysis, and AI applications in corporate environments."
+        },
+        {
+          "degree": "Postgraduate Degree in Enterprise Resource Planning (ERP)",
+          "institution": "UNINTER",
+          "date": "2023",
+          "highlight": "Focus on integrated management systems, business processes, and ERP system architecture."
+        },
+        {
+          "degree": "ITIL V4 Foundation",
+          "institution": "ITIL",
+          "date": "2021",
+          "highlight": "ITIL V4 Foundation certification, based on ITIL v4."
+        },
+        {
+          "degree": "Bachelor's Degree in Physics",
+          "institution": "State University of Londrina",
+          "date": "2019",
+          "highlight": "Strong foundation in logic, applied mathematics, and analytical thinking."
+        }
+      ]
+    }
+  },
+  "contact": {
+    "pt": {
+      "title": "Vamos Conversar",
+      "description": "Entre em contato para discutir como posso agregar valor ao seu time ou projeto.",
+      "email": "thi.hero2012@gmail.com",
+      "github": "https://github.com/silva-mateus",
+      "linkedin": "https://www.linkedin.com/in/mhassilvamat/",
+      "cv_url": "assets/images/Mateus Resume.pdf",
+      "cv_text": "Download CV",
+      "cta": "Disponível para projetos PJ e consultorias técnicas"
+    },
+    "en": {
+      "title": "Let's Talk",
+      "description": "Reach out to discuss how I can add value to your team or project.",
+      "email": "thi.hero2012@gmail.com",
+      "github": "https://github.com/silva-mateus",
+      "linkedin": "https://www.linkedin.com/in/mhassilvamat/",
+      "cv_url": "assets/images/Mateus Resume.pdf",
+      "cv_text": "Download Resume",
+      "cta": "Available for freelance projects and technical consulting"
+    }
+  },
+  "footer": {
+    "pt": {
+      "rights": "Todos os direitos reservados.",
+      "built": "Desenvolvido com HTML, CSS e JavaScript puro"
+    },
+    "en": {
+      "rights": "All rights reserved.",
+      "built": "Built with pure HTML, CSS, and JavaScript"
+    }
+  }
+}
