@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  portfolio:
+    build: .
+    container_name: portfolio-app
+    restart: unless-stopped
+    networks:
+      - portfolio-network
+
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    container_name: cloudflare-tunnel
+    restart: unless-stopped
+    command: tunnel --no-autoupdate run --token ${CLOUDFLARE_TUNNEL_TOKEN}
+    networks:
+      - portfolio-network
+    depends_on:
+      - portfolio
+
+networks:
+  portfolio-network:
+    driver: bridge

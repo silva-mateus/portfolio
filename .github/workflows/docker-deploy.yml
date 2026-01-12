@@ -1,0 +1,49 @@
+name: Docker Deploy to Local Server
+
+on:
+  push:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+    
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
+    
+    - name: Build Docker image
+      run: |
+        docker build -t portfolio:latest .
+        docker save portfolio:latest | gzip > portfolio-image.tar.gz
+    
+    - name: Setup SSH
+      uses: webfactory/ssh-agent@v0.8.0
+      with:
+        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+    
+    - name: Add server to known hosts
+      run: |
+        mkdir -p ~/.ssh
+        ssh-keyscan -H ${{ secrets.SERVER_HOST }} >> ~/.ssh/known_hosts
+    
+    - name: Copy image to server
+      run: |
+        scp portfolio-image.tar.gz ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:/tmp/
+    
+    - name: Deploy on server
+      run: |
+        ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << 'EOF'
+          cd /tmp
+          docker load < portfolio-image.tar.gz
+          cd ${{ secrets.DEPLOY_PATH }}
+          docker-compose down
+          docker-compose up -d
+          docker image prune -f
+          rm /tmp/portfolio-image.tar.gz
+          echo "✅ Deploy completed!"
+        EOF
