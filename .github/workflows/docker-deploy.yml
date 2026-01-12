@@ -15,11 +15,20 @@ jobs:
     
     - name: Deploy
       run: |
+        # Copiar arquivos do checkout para o diretório de deploy
+        rsync -av --delete \
+          --exclude '.git' \
+          --exclude '_work' \
+          --exclude 'node_modules' \
+          $GITHUB_WORKSPACE/ ~/portfolio/
+        
+        # Deploy
         cd ~/portfolio
-        git pull origin main
         docker compose down
         docker compose up -d --build
         docker image prune -f
+        
+        # Verificar
         docker ps | grep portfolio
         sleep 3
         curl -I http://localhost:8080
