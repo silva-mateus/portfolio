@@ -1,49 +1,25 @@
-name: Docker Deploy to Local Server
+name: Deploy Portfolio
 
 on:
   push:
-    branches: [ main, master ]
+    branches: [ main ]
   workflow_dispatch:
 
 jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest
+  deploy:
+    runs-on: self-hosted
     
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
     
-    - name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v2
-    
-    - name: Build Docker image
+    - name: Deploy
       run: |
-        docker build -t portfolio:latest .
-        docker save portfolio:latest | gzip > portfolio-image.tar.gz
-    
-    - name: Setup SSH
-      uses: webfactory/ssh-agent@v0.8.0
-      with:
-        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-    
-    - name: Add server to known hosts
-      run: |
-        mkdir -p ~/.ssh
-        ssh-keyscan -H ${{ secrets.SERVER_HOST }} >> ~/.ssh/known_hosts
-    
-    - name: Copy image to server
-      run: |
-        scp portfolio-image.tar.gz ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:/tmp/
-    
-    - name: Deploy on server
-      run: |
-        ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << 'EOF'
-          cd /tmp
-          docker load < portfolio-image.tar.gz
-          cd ${{ secrets.DEPLOY_PATH }}
-          docker-compose down
-          docker-compose up -d
-          docker image prune -f
-          rm /tmp/portfolio-image.tar.gz
-          echo "✅ Deploy completed!"
-        EOF
+        cd ~/portifolio
+        git pull origin main
+        docker compose down
+        docker compose up -d --build
+        docker image prune -f
+        docker ps | grep portfolio
+        sleep 3
+        curl -I http://localhost:8080
