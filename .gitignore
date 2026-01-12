@@ -23,3 +23,4 @@ assets/cv/*.pdf
 # Docs opcionais (remova se quiser commitar)
 # SETUP.md
 # DONE.md
+.env
