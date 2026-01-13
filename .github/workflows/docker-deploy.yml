@@ -13,15 +13,34 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
     
-    - name: Deploy
+    - name: Build and Deploy
+      working-directory: ${{ github.workspace }}
       run: |
-        # Trabalhar direto no diretório do checkout
-        cd $GITHUB_WORKSPACE
-        docker compose down
-        docker compose up -d --build
+        echo "📂 Working directory: $(pwd)"
+        echo "📋 Files:"
+        ls -la
+        
+        # Parar containers antigos
+        docker compose down || true
+        
+        # Build sem cache
+        docker compose build --no-cache
+        
+        # Subir containers
+        docker compose up -d
+        
+        # Limpar imagens antigas
         docker image prune -f
         
-        # Verificar
-        docker ps | grep portfolio
-        sleep 3
-        curl -I http://localhost:8080
+        # Verificar status
+        echo "✅ Containers rodando:"
+        docker compose ps
+        
+        # Testar
+        sleep 5
+        curl -I http://localhost:8080 || echo "⚠️ Servidor ainda não respondeu"
+        
+    - name: Verify Deployment
+      run: |
+        docker compose ps
+        docker compose logs --tail=50 portfolio
