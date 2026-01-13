@@ -1,18 +1,23 @@
 /**
- * Portfolio Dynamic App
- * Loads content from JSON and renders dynamically
- * No ES6 modules - works with file:// protocol
+ * TERMINAL PORTFOLIO - JavaScript
+ * Backend Engineer Theme with Interactive Elements
  */
 
 (function() {
     'use strict';
 
-    // Global state
+    // ==================== GLOBAL STATE ====================
     let contentData = null;
     let currentLang = localStorage.getItem('portfolio-lang') || 'pt';
-    let currentTheme = localStorage.getItem('portfolio-theme') || 'dark';
+    let terminalHeight = 350; // Default terminal height
+    let terminalSizes = ['small', 'medium', 'large']; // small=350px, medium=500px, large=650px
+    let currentTerminalSize = 0; // Index of terminalSizes
     
-    // Language configuration with SVG flags
+    // Detect OS for keyboard shortcuts
+    const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
+    const terminalShortcut = isMac ? '⌘⇧K' : 'Ctrl+Shift+K';
+    
+    // Language configuration
     const LANGUAGES = {
         pt: { 
             flag: 'assets/icons/brasil.svg', 
@@ -45,17 +50,148 @@
         education: '<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>'
     };
 
-    // Initialize app
+    // ==================== EASTER EGGS ====================
+    let konamiCode = [];
+    const konamiSequence = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+    
+    // Terminal commands
+    const terminalCommands = {
+        help: {
+            pt: `
+Comandos disponíveis:
+  help        - Mostra esta ajuda
+  about       - Informações sobre mim
+  skills      - Lista minhas habilidades
+  contact     - Informações de contato
+  projects    - Projetos destacados
+  stats       - Estatísticas de produtividade
+  clear       - Limpa o terminal
+  matrix      - ???
+  coffee      - ☕
+            `,
+            en: `
+Available commands:
+  help        - Shows this help
+  about       - Information about me
+  skills      - List my skills
+  contact     - Contact information
+  projects    - Featured projects
+  stats       - Productivity statistics
+  clear       - Clears terminal
+  matrix      - ???
+  coffee      - ☕
+            `,
+            es: `
+Comandos disponibles:
+  help        - Muestra esta ayuda
+  about       - Información sobre mí
+  skills      - Lista mis habilidades
+  contact     - Información de contacto
+  projects    - Proyectos destacados
+  stats       - Estadísticas de productividad
+  clear       - Limpia el terminal
+  matrix      - ???
+  coffee      - ☕
+            `
+        },
+        about: {
+            pt: 'Backend Engineer com 6+ anos de experiência em sistemas de billing, Python, SQL, C++, AWS. Apaixonado por resolver problemas complexos e automação.',
+            en: 'Backend Engineer with 6+ years of experience in billing systems, Python, SQL, C++, AWS. Passionate about solving complex problems and automation.',
+            es: 'Backend Engineer con 6+ años de experiencia en sistemas de facturación, Python, SQL, C++, AWS. Apasionado por resolver problemas complejos y automatización.'
+        },
+        skills: {
+            pt: 'Python | C++ | SQL | AWS | Linux | Git | Docker | CI/CD | Data Analysis | Billing Systems',
+            en: 'Python | C++ | SQL | AWS | Linux | Git | Docker | CI/CD | Data Analysis | Billing Systems',
+            es: 'Python | C++ | SQL | AWS | Linux | Git | Docker | CI/CD | Análisis de Datos | Sistemas de Facturación'
+        },
+        contact: {
+            pt: 'Email: thi.hero2012@gmail.com | LinkedIn: linkedin.com/in/mhassilvamat/ | GitHub: github.com/silva-mateus',
+            en: 'Email: thi.hero2012@gmail.com | LinkedIn: linkedin.com/in/mhassilvamat/ | GitHub: github.com/silva-mateus',
+            es: 'Email: thi.hero2012@gmail.com | LinkedIn: linkedin.com/in/mhassilvamat/ | GitHub: github.com/silva-mateus'
+        },
+        projects: {
+            pt: '1. Otimização de Sistemas de Billing Legacy (redução 80% erros)\n2. Pipelines de Análise de Dados em Produção\n3. Infraestrutura Cloud e Automação',
+            en: '1. Legacy Billing Systems Optimization (80% error reduction)\n2. Production Data Analysis Pipelines\n3. Cloud Infrastructure and Automation',
+            es: '1. Optimización de Sistemas de Facturación Legacy (reducción 80% errores)\n2. Pipelines de Análisis de Datos en Producción\n3. Infraestructura Cloud y Automatización'
+        },
+        clear: '',
+        matrix: '🟩 Wake up, Neo... The Matrix has you... 🟩',
+        coffee: '☕ Brewing coffee... Backend engineers run on caffeine! ☕',
+        stats: {
+            pt: `
+📊 Estatísticas de Produtividade:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  Linhas de Código:        2,500+
+  Café Consumido:          ☕☕☕☕☕ (infinito)
+  Bugs Corrigidos:         ∞
+  Features Entregues:      42
+  Stack Overflow:          999+ visitas
+  Qualidade do Código:     9.5/10
+  Commits:                 1,337
+  Pull Requests:           256
+  Code Reviews:            512
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+💡 "Code is poetry, bugs are typos"
+            `,
+            en: `
+📊 Productivity Statistics:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  Lines of Code:           2,500+
+  Coffee Consumed:         ☕☕☕☕☕ (infinite)
+  Bugs Fixed:              ∞
+  Features Shipped:        42
+  Stack Overflow:          999+ visits
+  Code Quality:            9.5/10
+  Commits:                 1,337
+  Pull Requests:           256
+  Code Reviews:            512
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+💡 "Code is poetry, bugs are typos"
+            `,
+            es: `
+📊 Estadísticas de Productividad:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  Líneas de Código:        2,500+
+  Café Consumido:          ☕☕☕☕☕ (infinito)
+  Bugs Corregidos:         ∞
+  Features Entregados:     42
+  Stack Overflow:          999+ visitas
+  Calidad del Código:      9.5/10
+  Commits:                 1,337
+  Pull Requests:           256
+  Code Reviews:            512
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+💡 "El código es poesía, los bugs son erratas"
+            `
+        }
+    };
+
+    // ==================== INITIALIZATION ====================
     function init() {
-        console.log('Initializing portfolio...');
-        applyTheme(currentTheme);
-        updateLanguageUI(); // Update language UI on init
-        loadContent();
+        console.log('%c⚡ Terminal Portfolio Loaded', 'color: #00ffff; font-size: 16px; font-weight: bold;');
+        console.log('%cType "help" in the terminal console for Easter eggs!', 'color: #00ff88; font-size: 12px;');
+        
+        updateLanguageUI();
+        loadContent(); // This will call renderAllContent which will call initTypingAnimation
         setupEventListeners();
         updateYear();
+        initEasterEggs();
+        initFaviconEasterEgg();
+        updateTerminalShortcut();
+        
+        // Console message
+        console.log(`%c🚀 Pro tip: Press ${terminalShortcut} to open terminal`, 'color: #a855f7; font-size: 12px;');
+    }
+    
+    // Update terminal shortcut text
+    function updateTerminalShortcut() {
+        const shortcutEl = document.getElementById('terminalShortcut');
+        if (shortcutEl) {
+            shortcutEl.textContent = terminalShortcut;
+        }
     }
 
-    // Load JSON content
+    // ==================== CONTENT LOADING ====================
     function loadContent() {
         fetch('data/content.json')
             .then(response => {
@@ -66,15 +202,16 @@
                 contentData = data;
                 renderAllContent();
                 initScrollAnimations();
-                console.log('Content loaded and rendered successfully');
+                initTypingAnimation();
+                console.log('%c✅ Content loaded successfully', 'color: #00ff88;');
             })
             .catch(error => {
                 console.error('Error loading content:', error);
-                document.body.innerHTML = '<div style="padding: 2rem; text-align: center; font-family: sans-serif;"><h1>⚠️ Erro ao carregar conteúdo</h1><p>Por favor, use um servidor local (HTTP) para visualizar este portfólio.</p><p>Execute: <code>python -m http.server 8000</code></p><p>Ou use: <code>start-server.bat</code></p></div>';
+                document.body.innerHTML = '<div style="padding: 2rem; text-align: center; font-family: monospace; color: #00ff88; background: #0a0a0f; min-height: 100vh; display: flex; align-items: center; justify-content: center;"><div><h1 style="color: #00ffff;">⚠️ Error Loading Portfolio</h1><p>Please use a local server (HTTP) to view this portfolio.</p><p>Run: <code style="background: #1a1a2e; padding: 0.5rem; border-radius: 4px;">python -m http.server 8000</code></p><p>Or use: <code style="background: #1a1a2e; padding: 0.5rem; border-radius: 4px;">start-server.bat</code></p></div></div>';
             });
     }
 
-    // Render all content
+    // ==================== RENDER FUNCTIONS ====================
     function renderAllContent() {
         renderNavigation();
         renderHero();
@@ -87,17 +224,14 @@
         renderFooter();
     }
 
-    // Render navigation
     function renderNavigation() {
         const nav = contentData.navigation[currentLang];
         const navMenu = document.getElementById('navMenu');
-        
         navMenu.innerHTML = nav.map(item => 
             `<li><a href="#${item.id}">${item.label}</a></li>`
         ).join('');
     }
 
-    // Render hero section
     function renderHero() {
         const hero = contentData.hero[currentLang];
         const photo = contentData.hero.photo;
@@ -110,9 +244,9 @@
             <div class="hero-text">
                 <h1 class="hero-title">
                     <span class="hero-greeting">${hero.greeting}</span>
-                    <span class="hero-name">${hero.name}</span>
+                    <span class="hero-name" id="heroName">${hero.name}</span>
                 </h1>
-                <h2 class="hero-subtitle">${hero.title}</h2>
+                <h2 class="hero-subtitle" id="heroSubtitle">${hero.title}</h2>
                 <p class="hero-description">${hero.description}</p>
                 <div class="hero-cta">
                     <a href="#contato" class="btn btn-primary">${hero.cta_primary}</a>
@@ -122,7 +256,6 @@
         `;
     }
 
-    // Render about section
     function renderAbout() {
         const about = contentData.about[currentLang];
         const container = document.getElementById('aboutContainer');
@@ -144,7 +277,6 @@
         `;
     }
 
-    // Render skills section
     function renderSkills() {
         const skills = contentData.skills[currentLang];
         const container = document.getElementById('skillsContainer');
@@ -174,7 +306,6 @@
         `;
     }
 
-    // Render experience section
     function renderExperience() {
         const experience = contentData.experience[currentLang];
         const container = document.getElementById('experienceContainer');
@@ -202,7 +333,6 @@
         `;
     }
 
-    // Render projects section
     function renderProjects() {
         const projects = contentData.projects[currentLang];
         const container = document.getElementById('projectsContainer');
@@ -216,11 +346,11 @@
                     </div>
                 </div>
                 <div class="project-content">
-                    <p class="project-context"><strong>${currentLang === 'pt' ? 'Contexto' : 'Context'}:</strong> ${project.context}</p>
-                    <p class="project-challenge"><strong>${currentLang === 'pt' ? 'Desafio Técnico' : 'Technical Challenge'}:</strong> ${project.challenge}</p>
-                    <p class="project-solution"><strong>${currentLang === 'pt' ? 'Solução' : 'Solution'}:</strong> ${project.solution}</p>
+                    <p class="project-context"><strong>${currentLang === 'pt' ? 'Contexto' : currentLang === 'en' ? 'Context' : 'Contexto'}:</strong> ${project.context}</p>
+                    <p class="project-challenge"><strong>${currentLang === 'pt' ? 'Desafio' : currentLang === 'en' ? 'Challenge' : 'Desafío'}:</strong> ${project.challenge}</p>
+                    <p class="project-solution"><strong>${currentLang === 'pt' ? 'Solução' : currentLang === 'en' ? 'Solution' : 'Solución'}:</strong> ${project.solution}</p>
                     <div class="project-results">
-                        <strong>${currentLang === 'pt' ? 'Resultados' : 'Results'}:</strong>
+                        <strong>${currentLang === 'pt' ? 'Resultados' : currentLang === 'en' ? 'Results' : 'Resultados'}:</strong>
                         <ul>
                             ${project.results.map(result => `<li>${result}</li>`).join('')}
                         </ul>
@@ -238,7 +368,6 @@
         `;
     }
 
-    // Render education section
     function renderEducation() {
         const education = contentData.education[currentLang];
         const container = document.getElementById('educationContainer');
@@ -259,7 +388,6 @@
         `;
     }
 
-    // Render contact section
     function renderContact() {
         const contact = contentData.contact[currentLang];
         const container = document.getElementById('contactContainer');
@@ -304,7 +432,6 @@
         `;
     }
 
-    // Render footer
     function renderFooter() {
         const footer = contentData.footer[currentLang];
         const hero = contentData.hero[currentLang];
@@ -314,10 +441,16 @@
         document.getElementById('footerBuilt').textContent = footer.built;
     }
 
-    // Setup event listeners
+    // ==================== EVENT LISTENERS ====================
     function setupEventListeners() {
-        // Theme toggle
-        document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+        // Terminal toggle
+        document.getElementById('terminalToggle').addEventListener('click', toggleTerminal);
+        
+        // Terminal close
+        document.getElementById('terminalClose').addEventListener('click', closeTerminal);
+        
+        // Terminal resize
+        document.getElementById('terminalResize').addEventListener('click', resizeTerminal);
         
         // Language toggle
         document.getElementById('langToggle').addEventListener('click', toggleLanguage);
@@ -360,41 +493,39 @@
             const currentScroll = window.pageYOffset;
             
             if (currentScroll > 100) {
-                header.style.boxShadow = 'var(--shadow-md)';
+                header.style.boxShadow = '0 4px 30px rgba(0, 255, 255, 0.2)';
             } else {
-                header.style.boxShadow = 'var(--shadow-sm)';
+                header.style.boxShadow = '0 4px 20px rgba(0, 255, 255, 0.1)';
             }
             
             lastScroll = currentScroll;
         });
     }
 
-    // Toggle theme
-    function toggleTheme() {
-        currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
-        applyTheme(currentTheme);
-        localStorage.setItem('portfolio-theme', currentTheme);
+    // ==================== TERMINAL FUNCTIONS ====================
+    function resizeTerminal() {
+        currentTerminalSize = (currentTerminalSize + 1) % terminalSizes.length;
+        const terminal = document.getElementById('terminal-console');
+        
+        const heights = {
+            small: '350px',
+            medium: '500px',
+            large: '650px'
+        };
+        
+        terminal.style.height = heights[terminalSizes[currentTerminalSize]];
+        
+        console.log(`Terminal resized to ${terminalSizes[currentTerminalSize]}`);
     }
 
-    // Apply theme
-    function applyTheme(theme) {
-        if (theme === 'light') {
-            document.documentElement.setAttribute('data-theme', 'light');
-        } else {
-            document.documentElement.removeAttribute('data-theme');
-        }
-    }
-
-    // Toggle language
-    // Toggle language: PT -> EN -> ES -> PT (cycle through 3 languages)
+    // ==================== LANGUAGE ====================
     function toggleLanguage() {
         const currentIndex = LANG_ORDER.indexOf(currentLang);
         const nextIndex = (currentIndex + 1) % LANG_ORDER.length;
         const nextLang = LANG_ORDER[nextIndex];
         
-        console.log('🔄 Toggling language:', currentLang, '→', nextLang);
-        console.log('   Index:', currentIndex, '→', nextIndex);
-        console.log('   Order:', LANG_ORDER);
+        // Check if hero was already animated
+        const heroWasAnimated = document.getElementById('heroName')?.dataset.typed === 'true';
         
         currentLang = nextLang;
         localStorage.setItem('portfolio-lang', currentLang);
@@ -402,17 +533,283 @@
         updateLanguageUI();
         
         if (contentData) {
+            // Store which titles were already typed (to not re-animate them)
+            const typedTitles = new Set();
+            document.querySelectorAll('.section-title[data-typed]').forEach(el => {
+                // Get the section ID to preserve typed state
+                const section = el.closest('.section');
+                if (section) {
+                    typedTitles.add(section.id);
+                }
+            });
+            
+            // Render content in NEW language first
             renderAllContent();
+            
+            // CRITICAL: Restore hero animation state IMMEDIATELY after render
+            if (heroWasAnimated) {
+                const heroName = document.getElementById('heroName');
+                const heroSubtitle = document.getElementById('heroSubtitle');
+                
+                if (heroName) {
+                    heroName.dataset.typed = 'true';
+                    // Make hero name text immediately visible (no animation)
+                    makeTextImmediatelyVisible(heroName);
+                }
+                
+                if (heroSubtitle) {
+                    heroSubtitle.dataset.typed = 'true';
+                    // Make hero subtitle text immediately visible (no animation)
+                    makeTextImmediatelyVisible(heroSubtitle);
+                }
+            }
+            
+            // IMPORTANT: Re-apply typed state to section titles BEFORE typePageText
+            // This prevents typePageText from trying to animate already-typed titles
+            document.querySelectorAll('.section-title').forEach(title => {
+                const section = title.closest('.section');
+                if (section && typedTitles.has(section.id)) {
+                    // This title was already animated before - show immediately with cursor
+                    title.dataset.typed = 'true';
+                    
+                    const text = title.textContent.trim();
+                    title.textContent = '';
+                    
+                    const wrapper = document.createElement('span');
+                    wrapper.className = 'section-title-text';
+                    wrapper.textContent = text;
+                    
+                    const cursor = document.createElement('span');
+                    cursor.className = 'typing-cursor';
+                    cursor.textContent = '▊';
+                    
+                    title.appendChild(wrapper);
+                    title.appendChild(cursor);
+                }
+            });
+            
+            // Apply typing effect to page (in correct language)
+            // Section titles with data-typed='true' will be skipped
+            typePageText(() => {
+                console.log('Language change typing complete');
+            });
+            
             initScrollAnimations();
+            // Don't call initTypingAnimation on language change (already animated)
         }
     }
     
-    // Update language UI (flag and code) - Shows CURRENT language
+    // Helper function to make text immediately visible (no animation)
+    function makeTextImmediatelyVisible(element) {
+        const text = element.textContent;
+        element.textContent = '';
+        
+        // Determine wrapper class based on element
+        let wrapperClass = 'text-wrapper';
+        if (element.id === 'heroName') {
+            wrapperClass = 'hero-name-text';
+        } else if (element.id === 'heroSubtitle') {
+            wrapperClass = 'hero-subtitle-text';
+        }
+        
+        const wrapper = document.createElement('span');
+        wrapper.className = wrapperClass;
+        wrapper.textContent = text;
+        
+        element.appendChild(wrapper);
+        // No cursor for hero elements
+    }
+    
+    // Simple typing effect for language change
+    function typePageText(callback) {
+        // Target ONLY section titles (with cursor)
+        const titleElements = document.querySelectorAll(`.section-title`);
+        
+        // Target all other text elements (without cursor)
+        const textElements = document.querySelectorAll(`
+            .hero-greeting,
+            .hero-description,
+            .about-text p,
+            .stat-label,
+            .skill-category-title,
+            .skill-name,
+            .timeline-title,
+            .timeline-company,
+            .timeline-date,
+            .timeline-description li,
+            .project-title,
+            .project-content p,
+            .tag,
+            .education-degree,
+            .education-institution,
+            .education-date,
+            .education-highlight,
+            .contact-description,
+            .contact-cta-text
+        `);
+        
+        // Target buttons and contact links separately (need size preservation)
+        const buttonElements = document.querySelectorAll(`.hero-cta .btn`);
+        const contactLinkElements = document.querySelectorAll(`.contact-link`);
+        
+        let completed = 0;
+        let callbackCalled = false;
+        const total = titleElements.length + textElements.length + buttonElements.length + contactLinkElements.length;
+        
+        const checkComplete = () => {
+            completed++;
+            if (completed >= total && !callbackCalled && callback) {
+                callbackCalled = true;
+                callback();
+            }
+        };
+        
+        if (total === 0) {
+            if (callback) callback();
+            return;
+        }
+        
+        // Type titles with cursor
+        Array.from(titleElements).forEach((element) => {
+            const text = element.textContent.trim();
+            
+            if (!text || element.dataset.typed === 'true' || element.querySelector('.section-title-text')) {
+                checkComplete();
+                return;
+            }
+            
+            element.textContent = '';
+            
+            const wrapper = document.createElement('span');
+            wrapper.className = 'section-title-text';
+            
+            const cursor = document.createElement('span');
+            cursor.className = 'typing-cursor';
+            cursor.textContent = '▊';
+            
+            element.appendChild(wrapper);
+            element.appendChild(cursor);
+            
+            let index = 0;
+            const interval = setInterval(() => {
+                if (index < text.length) {
+                    wrapper.textContent += text[index];
+                    index++;
+                } else {
+                    clearInterval(interval);
+                    checkComplete();
+                }
+            }, 30);
+        });
+        
+        // Type regular text elements
+        Array.from(textElements).forEach((element) => {
+            const text = element.textContent.trim();
+            
+            if (!text) {
+                checkComplete();
+                return;
+            }
+            
+            element.textContent = '';
+            
+            let index = 0;
+            const interval = setInterval(() => {
+                if (index < text.length) {
+                    element.textContent += text[index];
+                    index++;
+                } else {
+                    clearInterval(interval);
+                    checkComplete();
+                }
+            }, 15);
+        });
+        
+        // Type buttons with size preservation
+        Array.from(buttonElements).forEach((button) => {
+            const text = button.textContent.trim();
+            
+            if (!text) {
+                checkComplete();
+                return;
+            }
+            
+            // Preserve button size by creating ghost text
+            const currentWidth = button.offsetWidth;
+            const currentHeight = button.offsetHeight;
+            
+            // Set fixed dimensions
+            button.style.minWidth = currentWidth + 'px';
+            button.style.minHeight = currentHeight + 'px';
+            
+            // Clear visible text
+            button.textContent = '';
+            
+            let index = 0;
+            const interval = setInterval(() => {
+                if (index < text.length) {
+                    button.textContent += text[index];
+                    index++;
+                } else {
+                    clearInterval(interval);
+                    // Remove fixed dimensions after typing
+                    setTimeout(() => {
+                        button.style.minWidth = '';
+                        button.style.minHeight = '';
+                    }, 100);
+                    checkComplete();
+                }
+            }, 20);
+        });
+        
+        // Type contact links (only the text span, preserve SVG icons)
+        Array.from(contactLinkElements).forEach((link) => {
+            const textSpan = link.querySelector('span');
+            
+            if (!textSpan) {
+                checkComplete();
+                return;
+            }
+            
+            const text = textSpan.textContent.trim();
+            
+            if (!text) {
+                checkComplete();
+                return;
+            }
+            
+            // Preserve link size
+            const currentWidth = link.offsetWidth;
+            const currentHeight = link.offsetHeight;
+            
+            link.style.minWidth = currentWidth + 'px';
+            link.style.minHeight = currentHeight + 'px';
+            
+            // Clear only the text span
+            textSpan.textContent = '';
+            
+            let index = 0;
+            const interval = setInterval(() => {
+                if (index < text.length) {
+                    textSpan.textContent += text[index];
+                    index++;
+                } else {
+                    clearInterval(interval);
+                    // Remove fixed dimensions after typing
+                    setTimeout(() => {
+                        link.style.minWidth = '';
+                        link.style.minHeight = '';
+                    }, 100);
+                    checkComplete();
+                }
+            }, 20);
+        });
+    }
+    
     function updateLanguageUI() {
         const langConfig = LANGUAGES[currentLang];
         if (!langConfig) {
-            console.error('Language not found:', currentLang);
-            currentLang = 'pt'; // fallback
+            currentLang = 'pt';
             return;
         }
         
@@ -422,17 +819,61 @@
         const langText = document.getElementById('langText');
         
         if (flagIcon && langText) {
-            // Use SVG image for flags
             flagIcon.innerHTML = `<img src="${langConfig.flag}" alt="${langConfig.name}" class="flag-svg">`;
             langText.textContent = langConfig.code;
-            
-            console.log('✅ Language UI updated to:', currentLang, '(' + langConfig.name + ')');
-        } else {
-            console.error('❌ Language UI elements not found');
         }
     }
 
-    // Initialize scroll animations
+    // ==================== ANIMATIONS ====================
+    // Animated counter for numbers
+    function animateCounter(element, target, duration = 2000, suffix = '') {
+        const start = 0;
+        const increment = target / (duration / 16);
+        let current = start;
+        
+        const timer = setInterval(() => {
+            current += increment;
+            
+            if (current >= target) {
+                element.textContent = target + suffix;
+                clearInterval(timer);
+            } else {
+                element.textContent = Math.floor(current) + suffix;
+            }
+        }, 16);
+    }
+    
+    // Typing animation for section titles (character by character reveal)
+    function typeTextElement(element, text, speed = 80) {
+        return new Promise((resolve) => {
+            // Create wrapper for text
+            const wrapper = document.createElement('span');
+            wrapper.className = 'section-title-text';
+            
+            // Create cursor element
+            const cursor = document.createElement('span');
+            cursor.className = 'typing-cursor';
+            cursor.textContent = '▊';
+            
+            element.appendChild(wrapper);
+            element.appendChild(cursor);
+            
+            let currentIndex = 0;
+            
+            const interval = setInterval(() => {
+                if (currentIndex < text.length) {
+                    // Add next character
+                    wrapper.textContent += text[currentIndex];
+                    currentIndex++;
+                } else {
+                    clearInterval(interval);
+                    // Keep cursor blinking after typing is done
+                    resolve();
+                }
+            }, speed);
+        });
+    }
+    
     function initScrollAnimations() {
         const observerOptions = {
             threshold: 0.1,
@@ -444,6 +885,23 @@
                 if (entry.isIntersecting) {
                     entry.target.classList.add('animated');
                     
+                    // Animate section titles with typing effect
+                    if (entry.target.classList.contains('section-title') && !entry.target.dataset.typed) {
+                        entry.target.dataset.typed = 'true';
+                        const fullText = entry.target.textContent.trim();
+                        
+                        // Remove the text content but keep the structure
+                        // CSS ::before will add "$ " automatically
+                        // CSS ::after will add cursor automatically
+                        const textWithoutCursor = fullText.replace('▊', '').trim();
+                        
+                        // Clear existing content (but ::before and ::after remain via CSS)
+                        entry.target.textContent = '';
+                        
+                        // Start typing animation (just the text, $ is in ::before)
+                        typeTextElement(entry.target, textWithoutCursor, 80);
+                    }
+                    
                     // Animate skill bars
                     if (entry.target.classList.contains('skill-category')) {
                         const skillBars = entry.target.querySelectorAll('.skill-progress');
@@ -454,6 +912,24 @@
                             }, 100);
                         });
                     }
+                    
+                    // Animate stat numbers
+                    if (entry.target.classList.contains('stat-card')) {
+                        const numberEl = entry.target.querySelector('.stat-number');
+                        if (numberEl && !numberEl.dataset.animated) {
+                            numberEl.dataset.animated = 'true';
+                            const text = numberEl.textContent;
+                            const match = text.match(/(\d+)/);
+                            if (match) {
+                                const number = parseInt(match[1]);
+                                const suffix = text.replace(match[0], '');
+                                numberEl.textContent = '0' + suffix;
+                                setTimeout(() => {
+                                    animateCounter(numberEl, number, 2000, suffix);
+                                }, 200);
+                            }
+                        }
+                    }
                 }
             });
         }, observerOptions);
@@ -461,14 +937,262 @@
         document.querySelectorAll('.animate-on-scroll').forEach(function(el) {
             observer.observe(el);
         });
+        
+        // Observe section titles for typing animation
+        document.querySelectorAll('.section-title').forEach(function(el) {
+            observer.observe(el);
+        });
+        
+        // Also observe stat cards specifically
+        document.querySelectorAll('.stat-card').forEach(function(el) {
+            observer.observe(el);
+        });
     }
 
-    // Update year
+    // Typing animation for hero section (letter by letter with cursor)
+    function initTypingAnimation() {
+        const heroName = document.getElementById('heroName');
+        const heroSubtitle = document.getElementById('heroSubtitle');
+        
+        if (!heroName || !heroSubtitle) return;
+        
+        // CRITICAL: Skip if already animated (check both elements)
+        if (heroName.dataset.typed === 'true' || heroSubtitle.dataset.typed === 'true') {
+            console.log('Hero typing animation skipped (already animated)');
+            return;
+        }
+        
+        // Also skip if heroName already has content structure (was pre-rendered)
+        if (heroName.querySelector('span.hero-name-text')) {
+            console.log('Hero typing animation skipped (already has text wrapper)');
+            heroName.dataset.typed = 'true';
+            heroSubtitle.dataset.typed = 'true';
+            return;
+        }
+        
+        const nameText = heroName.textContent;
+        const subtitleText = heroSubtitle.textContent;
+        
+        console.log('Starting hero typing animation');
+        
+        // IMPORTANT: Hide subtitle initially to prevent flash
+        heroSubtitle.style.opacity = '0';
+        
+        // Clear and setup name typing
+        heroName.textContent = '';
+        heroName.dataset.typed = 'true';
+        
+        const nameWrapper = document.createElement('span');
+        nameWrapper.className = 'hero-name-text';
+        
+        const nameCursor = document.createElement('span');
+        nameCursor.className = 'typing-cursor';
+        nameCursor.textContent = '▊';
+        
+        heroName.appendChild(nameWrapper);
+        heroName.appendChild(nameCursor);
+        
+        // Type name letter by letter
+        let nameIndex = 0;
+        const nameInterval = setInterval(() => {
+            if (nameIndex < nameText.length) {
+                nameWrapper.textContent += nameText[nameIndex];
+                nameIndex++;
+            } else {
+                clearInterval(nameInterval);
+                // Remove cursor from name
+                nameCursor.remove();
+                
+                // Start typing subtitle after name is done
+                setTimeout(() => {
+                    // Clear and show subtitle
+                    heroSubtitle.textContent = '';
+                    heroSubtitle.style.opacity = '1';
+                    heroSubtitle.dataset.typed = 'true';
+                    
+                    const subtitleWrapper = document.createElement('span');
+                    subtitleWrapper.className = 'hero-subtitle-text';
+                    
+                    heroSubtitle.appendChild(subtitleWrapper);
+                    
+                    // Type subtitle letter by letter (NO CURSOR)
+                    let subtitleIndex = 0;
+                    const subtitleInterval = setInterval(() => {
+                        if (subtitleIndex < subtitleText.length) {
+                            subtitleWrapper.textContent += subtitleText[subtitleIndex];
+                            subtitleIndex++;
+                        } else {
+                            clearInterval(subtitleInterval);
+                        }
+                    }, 50);
+                }, 300);
+            }
+        }, 100);
+    }
+
+    // ==================== EASTER EGGS ====================
+    function initEasterEggs() {
+        // Konami Code
+        document.addEventListener('keydown', function(e) {
+            konamiCode.push(e.key);
+            konamiCode = konamiCode.slice(-konamiSequence.length);
+            
+            if (konamiCode.join(',') === konamiSequence.join(',')) {
+                activateMatrixMode();
+                konamiCode = [];
+            }
+        });
+        
+        // Terminal shortcut (Ctrl+Shift+K)
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && e.shiftKey && e.key === 'K') {
+                e.preventDefault();
+                toggleTerminal();
+            }
+        });
+        
+        // Terminal input
+        const terminalInput = document.getElementById('terminal-input');
+        if (terminalInput) {
+            terminalInput.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    executeTerminalCommand(this.value.trim());
+                    this.value = '';
+                }
+            });
+        }
+        
+        // Console Easter eggs
+        console.log('%c🎮 Konami Code Activated!', 'color: #a855f7; font-size: 14px; display: none;');
+    }
+
+    function toggleTerminal() {
+        const terminal = document.getElementById('terminal-console');
+        terminal.classList.toggle('active');
+        
+        if (terminal.classList.contains('active')) {
+            document.getElementById('terminal-input').focus();
+        }
+    }
+    
+    function closeTerminal() {
+        document.getElementById('terminal-console').classList.remove('active');
+    }
+
+    function executeTerminalCommand(command) {
+        const output = document.getElementById('terminal-output');
+        const terminal = document.getElementById('terminal-console');
+        const cmd = command.toLowerCase();
+        
+        // Add command to output
+        const commandLine = document.createElement('div');
+        commandLine.innerHTML = `<span style="color: #00ffff;">mateus@portfolio:~$</span> ${command}`;
+        output.appendChild(commandLine);
+        
+        // Execute command
+        let response = '';
+        let isError = false;
+        
+        if (terminalCommands[cmd]) {
+            if (cmd === 'clear') {
+                output.innerHTML = '';
+                return;
+            }
+            response = typeof terminalCommands[cmd] === 'object' 
+                ? terminalCommands[cmd][currentLang] 
+                : terminalCommands[cmd];
+        } else if (cmd === '') {
+            return;
+        } else {
+            isError = true;
+            response = currentLang === 'pt' 
+                ? `Comando não encontrado: ${command}. Digite 'help' para ver comandos disponíveis.`
+                : currentLang === 'en'
+                ? `Command not found: ${command}. Type 'help' to see available commands.`
+                : `Comando no encontrado: ${command}. Escribe 'help' para ver comandos disponibles.`;
+            
+            // Shake effect on error
+            terminal.classList.add('shake');
+            setTimeout(() => {
+                terminal.classList.remove('shake');
+            }, 500);
+        }
+        
+        const responseLine = document.createElement('div');
+        responseLine.style.whiteSpace = 'pre-wrap';
+        responseLine.style.marginBottom = '0.5rem';
+        if (isError) {
+            responseLine.classList.add('error');
+        }
+        responseLine.textContent = response;
+        output.appendChild(responseLine);
+        
+        // Scroll to bottom
+        document.querySelector('.terminal-body').scrollTop = document.querySelector('.terminal-body').scrollHeight;
+    }
+
+    function activateMatrixMode() {
+        const body = document.body;
+        body.style.animation = 'matrix-flash 0.5s ease';
+        
+        // Create matrix rain effect
+        const matrixMessage = document.createElement('div');
+        matrixMessage.style.cssText = `
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 3rem;
+            color: #00ff00;
+            text-shadow: 0 0 30px #00ff00;
+            z-index: 10001;
+            font-family: monospace;
+            animation: fade-in-out 3s ease;
+        `;
+        matrixMessage.textContent = '🟩 MATRIX MODE ACTIVATED 🟩';
+        body.appendChild(matrixMessage);
+        
+        setTimeout(() => {
+            body.removeChild(matrixMessage);
+        }, 3000);
+        
+        console.log('%c🟩 MATRIX MODE ACTIVATED 🟩', 'color: #00ff00; font-size: 20px; font-weight: bold; text-shadow: 0 0 10px #00ff00;');
+    }
+
+    // ==================== UTILITY FUNCTIONS ====================
     function updateYear() {
         document.getElementById('current-year').textContent = new Date().getFullYear();
     }
+    
+    // Favicon Easter Egg - Changes based on time of day
+    function initFaviconEasterEgg() {
+        function updateFavicon() {
+            const hour = new Date().getHours();
+            let emoji = '💻'; // Default
+            
+            if (hour >= 6 && hour < 12) {
+                emoji = '☕'; // Morning - Coffee
+            } else if (hour >= 12 && hour < 18) {
+                emoji = '💻'; // Afternoon - Computer
+            } else if (hour >= 18 && hour < 22) {
+                emoji = '🌆'; // Evening - Sunset
+            } else {
+                emoji = '🌙'; // Night - Moon
+            }
+            
+            const favicon = document.querySelector("link[rel='icon']");
+            if (favicon) {
+                favicon.href = `data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>${emoji}</text></svg>`;
+            }
+        }
+        
+        updateFavicon();
+        // Update every hour
+        setInterval(updateFavicon, 3600000);
+    }
 
-    // Start app when DOM is ready
+    // ==================== START APP ====================
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', init);
     } else {
@@ -476,4 +1200,3 @@
     }
 
 })();
-
