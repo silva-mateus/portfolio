@@ -62,6 +62,7 @@ Comandos disponíveis:
   skills      - Lista minhas habilidades
   contact     - Informações de contato
   projects    - Projetos destacados
+  leaderboard - 🏆 Mostrar ranking
   clear       - Limpa o terminal
   play        - 🎮 Inicia o Coffee Machine Debugger
             `,
@@ -72,6 +73,7 @@ Available commands:
   skills      - List my skills
   contact     - Contact information
   projects    - Featured projects
+  leaderboard - 🏆 Show ranking
   clear       - Clears terminal
   play        - 🎮 Start Coffee Machine Debugger
             `,
@@ -82,6 +84,7 @@ Comandos disponibles:
   skills      - Lista mis habilidades
   contact     - Información de contacto
   projects    - Proyectos destacados
+  leaderboard - 🏆 Mostrar ranking
   clear       - Limpia el terminal
   play        - 🎮 Inicia el Coffee Machine Debugger
             `
@@ -1039,6 +1042,10 @@ Comandos disponibles:
         if (window.CoffeeMachineDebug && window.CoffeeMachineDebug.isAwaitingName && window.CoffeeMachineDebug.isAwaitingName()) {
             terminal.classList.add('terminal-name-input');
             promptEl.textContent = '';
+            const terminalInput = document.getElementById('terminal-input');
+            if (terminalInput) {
+                setTimeout(() => terminalInput.focus(), 0);
+            }
             return;
         }
         
@@ -1271,6 +1278,32 @@ Comandos disponibles:
         commandLine.innerHTML = `<span style="color: #00ffff;">mateus@portfolio:~$</span> ${command}`;
         output.appendChild(commandLine);
         
+        // Check for 'leaderboard' command
+        if (cmd === 'leaderboard') {
+            const responseLine = document.createElement('div');
+            responseLine.style.whiteSpace = 'pre-wrap';
+            responseLine.style.marginBottom = '0.5rem';
+            responseLine.textContent = currentLang === 'pt'
+                ? '📊 Buscando ranking...'
+                : currentLang === 'en'
+                ? '📊 Fetching leaderboard...'
+                : '📊 Buscando ranking...';
+            output.appendChild(responseLine);
+
+            window.CoffeeMachineDebug.displayLeaderboard([], '').then(() => {
+                const leaderboardOutput = [];
+                window.CoffeeMachineDebug.displayLeaderboard(leaderboardOutput, '').then(() => {
+                    const leaderboardLine = document.createElement('div');
+                    leaderboardLine.style.whiteSpace = 'pre-wrap';
+                    leaderboardLine.textContent = leaderboardOutput.join('\n');
+                    output.appendChild(leaderboardLine);
+                    document.querySelector('.terminal-body').scrollTop = document.querySelector('.terminal-body').scrollHeight;
+                    updateTerminalPrompt();
+                });
+            });
+            return;
+        }
+
         // Check for 'play' command to start game
         if (cmd === 'play') {
             const gameIntro = window.CoffeeMachineDebug.start(currentLang);
