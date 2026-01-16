@@ -24,3 +24,14 @@ assets/cv/*.pdf
 # SETUP.md
 # DONE.md
 .env
+
+# Python
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.pytest_cache/
+
+# Game data (não versionar scores)
+data/highscores.csv

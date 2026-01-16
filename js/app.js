@@ -51,8 +51,6 @@
     };
 
     // ==================== EASTER EGGS ====================
-    let konamiCode = [];
-    const konamiSequence = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
     
     // Terminal commands
     const terminalCommands = {
@@ -64,10 +62,8 @@ Comandos disponíveis:
   skills      - Lista minhas habilidades
   contact     - Informações de contato
   projects    - Projetos destacados
-  stats       - Estatísticas de produtividade
   clear       - Limpa o terminal
-  matrix      - ???
-  coffee      - ☕
+  play        - 🎮 Inicia o Coffee Machine Debugger
             `,
             en: `
 Available commands:
@@ -76,10 +72,8 @@ Available commands:
   skills      - List my skills
   contact     - Contact information
   projects    - Featured projects
-  stats       - Productivity statistics
   clear       - Clears terminal
-  matrix      - ???
-  coffee      - ☕
+  play        - 🎮 Start Coffee Machine Debugger
             `,
             es: `
 Comandos disponibles:
@@ -88,10 +82,8 @@ Comandos disponibles:
   skills      - Lista mis habilidades
   contact     - Información de contacto
   projects    - Proyectos destacados
-  stats       - Estadísticas de productividad
   clear       - Limpia el terminal
-  matrix      - ???
-  coffee      - ☕
+  play        - 🎮 Inicia el Coffee Machine Debugger
             `
         },
         about: {
@@ -115,55 +107,7 @@ Comandos disponibles:
             es: '1. Optimización de Sistemas de Facturación Legacy (reducción 80% errores)\n2. Pipelines de Análisis de Datos en Producción\n3. Infraestructura Cloud y Automatización'
         },
         clear: '',
-        matrix: '🟩 Wake up, Neo... The Matrix has you... 🟩',
-        coffee: '☕ Brewing coffee... Backend engineers run on caffeine! ☕',
-        stats: {
-            pt: `
-📊 Estatísticas de Produtividade:
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  Linhas de Código:        2,500+
-  Café Consumido:          ☕☕☕☕☕ (infinito)
-  Bugs Corrigidos:         ∞
-  Features Entregues:      42
-  Stack Overflow:          999+ visitas
-  Qualidade do Código:     9.5/10
-  Commits:                 1,337
-  Pull Requests:           256
-  Code Reviews:            512
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-💡 "Code is poetry, bugs are typos"
-            `,
-            en: `
-📊 Productivity Statistics:
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  Lines of Code:           2,500+
-  Coffee Consumed:         ☕☕☕☕☕ (infinite)
-  Bugs Fixed:              ∞
-  Features Shipped:        42
-  Stack Overflow:          999+ visits
-  Code Quality:            9.5/10
-  Commits:                 1,337
-  Pull Requests:           256
-  Code Reviews:            512
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-💡 "Code is poetry, bugs are typos"
-            `,
-            es: `
-📊 Estadísticas de Productividad:
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  Líneas de Código:        2,500+
-  Café Consumido:          ☕☕☕☕☕ (infinito)
-  Bugs Corregidos:         ∞
-  Features Entregados:     42
-  Stack Overflow:          999+ visitas
-  Calidad del Código:      9.5/10
-  Commits:                 1,337
-  Pull Requests:           256
-  Code Reviews:            512
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-💡 "El código es poesía, los bugs son erratas"
-            `
-        }
+        
     };
 
     // ==================== INITIALIZATION ====================
@@ -822,6 +766,18 @@ Comandos disponibles:
             flagIcon.innerHTML = `<img src="${langConfig.flag}" alt="${langConfig.name}" class="flag-svg">`;
             langText.textContent = langConfig.code;
         }
+
+        const tooltipTitle = document.getElementById('langTooltipTitle');
+        const tooltipValue = document.getElementById('langTooltipValue');
+        if (tooltipTitle && tooltipValue) {
+            const titleText = currentLang === 'pt'
+                ? 'Língua'
+                : currentLang === 'en'
+                ? 'Language'
+                : 'Idioma';
+            tooltipTitle.textContent = titleText;
+            tooltipValue.textContent = langConfig.name;
+        }
     }
 
     // ==================== ANIMATIONS ====================
@@ -1032,17 +988,6 @@ Comandos disponibles:
 
     // ==================== EASTER EGGS ====================
     function initEasterEggs() {
-        // Konami Code
-        document.addEventListener('keydown', function(e) {
-            konamiCode.push(e.key);
-            konamiCode = konamiCode.slice(-konamiSequence.length);
-            
-            if (konamiCode.join(',') === konamiSequence.join(',')) {
-                activateMatrixMode();
-                konamiCode = [];
-            }
-        });
-        
         // Terminal shortcut (Ctrl+Shift+K)
         document.addEventListener('keydown', function(e) {
             if (e.ctrlKey && e.shiftKey && e.key === 'K') {
@@ -1062,9 +1007,6 @@ Comandos disponibles:
                 }
             });
         }
-        
-        // Console Easter eggs
-        console.log('%c🎮 Konami Code Activated!', 'color: #a855f7; font-size: 14px; display: none;');
     }
 
     function toggleTerminal() {
@@ -1080,21 +1022,275 @@ Comandos disponibles:
         document.getElementById('terminal-console').classList.remove('active');
     }
 
+    function updateTerminalPrompt() {
+        const promptEl = document.querySelector('.terminal-prompt');
+        const terminal = document.getElementById('terminal-console');
+        
+        if (!promptEl || !terminal) return;
+        
+        if (window.CoffeeMachineDebug && window.CoffeeMachineDebug.isStreaming && window.CoffeeMachineDebug.isStreaming()) {
+            terminal.classList.add('terminal-streaming');
+            terminal.classList.remove('terminal-name-input');
+            return;
+        }
+        
+        terminal.classList.remove('terminal-streaming');
+        
+        if (window.CoffeeMachineDebug && window.CoffeeMachineDebug.isAwaitingName && window.CoffeeMachineDebug.isAwaitingName()) {
+            terminal.classList.add('terminal-name-input');
+            promptEl.textContent = '';
+            return;
+        }
+        
+        terminal.classList.remove('terminal-name-input');
+        
+        if (window.CoffeeMachineDebug && window.CoffeeMachineDebug.isActive && window.CoffeeMachineDebug.isActive()) {
+            const currentPath = window.CoffeeMachineDebug.getCurrentPath();
+            promptEl.textContent = `dev@coffee-machine:${currentPath}$`;
+            return;
+        }
+        
+        promptEl.textContent = 'mateus@portfolio:~$';
+    }
+
     function executeTerminalCommand(command) {
         const output = document.getElementById('terminal-output');
         const terminal = document.getElementById('terminal-console');
         const cmd = command.toLowerCase();
+        updateTerminalPrompt();
+        
+        // Check if Coffee Machine Debug is awaiting name input
+        if (window.CoffeeMachineDebug && window.CoffeeMachineDebug.isAwaitingName()) {
+            const lowered = command.trim().toLowerCase();
+            if (lowered === 'menu') {
+                window.CoffeeMachineDebug.reset();
+                window.coffeeMachineAwaitingName = false;
+                
+                const responseLine = document.createElement('div');
+                responseLine.style.whiteSpace = 'pre-wrap';
+                responseLine.style.marginBottom = '0.5rem';
+                responseLine.textContent = currentLang === 'pt' 
+                    ? '\n☕ Voltando ao terminal normal...\n'
+                    : currentLang === 'en'
+                    ? '\n☕ Returning to normal terminal...\n'
+                    : '\n☕ Volviendo al terminal normal...\n';
+                output.appendChild(responseLine);
+                
+                document.querySelector('.terminal-body').scrollTop = document.querySelector('.terminal-body').scrollHeight;
+                updateTerminalPrompt();
+                return;
+            }
+            
+            if (lowered === 'play') {
+                window.CoffeeMachineDebug.reset();
+                window.coffeeMachineAwaitingName = false;
+                
+                const gameIntro = window.CoffeeMachineDebug.start(currentLang);
+                const responseLine = document.createElement('div');
+                responseLine.style.whiteSpace = 'pre-wrap';
+                responseLine.style.marginBottom = '0.5rem';
+                responseLine.textContent = gameIntro;
+                output.appendChild(responseLine);
+                
+                document.querySelector('.terminal-body').scrollTop = document.querySelector('.terminal-body').scrollHeight;
+                updateTerminalPrompt();
+                return;
+            }
+
+            if (lowered === 'exit') {
+                window.CoffeeMachineDebug.reset();
+                window.coffeeMachineAwaitingName = false;
+                
+                const responseLine = document.createElement('div');
+                responseLine.style.whiteSpace = 'pre-wrap';
+                responseLine.style.marginBottom = '0.5rem';
+                responseLine.textContent = currentLang === 'pt' 
+                    ? '\nConnection closed. Retornando ao terminal normal...\n'
+                    : currentLang === 'en'
+                    ? '\nConnection closed. Returning to normal terminal...\n'
+                    : '\nConnection closed. Volviendo al terminal normal...\n';
+                output.appendChild(responseLine);
+                
+                document.querySelector('.terminal-body').scrollTop = document.querySelector('.terminal-body').scrollHeight;
+                updateTerminalPrompt();
+                return;
+            }
+
+            const reservedNames = new Set([
+                'play', 'menu', 'exit', 'help', 'ls', 'cd', 'cat', 'pwd',
+                'ps', 'ps -ef', 'ps aux', 'free', 'free -h', 'top',
+                'env', 'printenv', 'grep', 'find', 'systemctl',
+                './brew-coffee.sh', 'brew-coffee.sh'
+            ]);
+            if (reservedNames.has(lowered) || lowered === '') {
+                const responseLine = document.createElement('div');
+                responseLine.style.whiteSpace = 'pre-wrap';
+                responseLine.style.marginBottom = '0.5rem';
+                responseLine.textContent = currentLang === 'pt'
+                    ? '❌ Nome inválido. Digite apenas seu nome.'
+                    : currentLang === 'en'
+                    ? '❌ Invalid name. Please enter only your name.'
+                    : '❌ Nombre inválido. Escribe solo tu nombre.';
+                output.appendChild(responseLine);
+                updateTerminalPrompt();
+                return;
+            }
+
+            // Add input to output
+            const inputLine = document.createElement('div');
+            inputLine.textContent = `> ${command}`;
+            output.appendChild(inputLine);
+
+            // Submit score
+            window.CoffeeMachineDebug.submitScore(command).then(result => {
+                const responseLine = document.createElement('div');
+                responseLine.style.whiteSpace = 'pre-wrap';
+                responseLine.style.marginBottom = '0.5rem';
+                
+                if (result.success) {
+                    responseLine.textContent = currentLang === 'pt' 
+                        ? `\n📊 Salvando no ranking...\n\n🎊 POSIÇÃO NO RANKING: #${result.rank}\n`
+                        : currentLang === 'en'
+                        ? `\n📊 Saving to ranking...\n\n🎊 RANKING POSITION: #${result.rank}\n`
+                        : `\n📊 Guardando en el ranking...\n\n🎊 POSICIÓN EN EL RANKING: #${result.rank}\n`;
+                    
+                    output.appendChild(responseLine);
+                    
+                    // Display leaderboard
+                    const leaderboardOutput = [];
+                    window.CoffeeMachineDebug.displayLeaderboard(leaderboardOutput, command).then(() => {
+                        const leaderboardLine = document.createElement('div');
+                        leaderboardLine.style.whiteSpace = 'pre-wrap';
+                        leaderboardLine.textContent = leaderboardOutput.join('\n');
+                        output.appendChild(leaderboardLine);
+                        
+                        // Scroll to bottom
+                        document.querySelector('.terminal-body').scrollTop = document.querySelector('.terminal-body').scrollHeight;
+                    });
+                } else {
+                    responseLine.textContent = `\n❌ Error: ${result.error}\n`;
+                    output.appendChild(responseLine);
+                }
+                
+                // Scroll to bottom
+                document.querySelector('.terminal-body').scrollTop = document.querySelector('.terminal-body').scrollHeight;
+                window.coffeeMachineAwaitingName = false;
+                updateTerminalPrompt();
+            });
+            
+            return;
+        }
+
+        if (window.CoffeeMachineDebug && window.CoffeeMachineDebug.isStreaming && window.CoffeeMachineDebug.isStreaming()) {
+            // Ignore input while streaming the completion output
+            const responseLine = document.createElement('div');
+            responseLine.style.whiteSpace = 'pre-wrap';
+            responseLine.style.marginBottom = '0.5rem';
+            responseLine.textContent = currentLang === 'pt'
+                ? '⏳ Aguarde o fim do processo...'
+                : currentLang === 'en'
+                ? '⏳ Please wait for the process to finish...'
+                : '⏳ Por favor espera a que termine el proceso...';
+            output.appendChild(responseLine);
+            document.querySelector('.terminal-body').scrollTop = document.querySelector('.terminal-body').scrollHeight;
+            updateTerminalPrompt();
+            return;
+        }
+        
+        // Check if Coffee Machine Debug is active
+        if (window.CoffeeMachineDebug && window.CoffeeMachineDebug.isActive()) {
+            // Add command to output with current path
+            const currentPath = window.CoffeeMachineDebug.getCurrentPath();
+            const isScriptCommand = cmd.startsWith('./') || cmd.endsWith('.sh') || cmd === 'brew-coffee.sh';
+            if (!isScriptCommand) {
+                const commandLine = document.createElement('div');
+                commandLine.innerHTML = `<span style="color: #00ffff;">dev@coffee-machine:${currentPath}$</span> ${command}`;
+                output.appendChild(commandLine);
+            }
+            
+            // Execute game command
+            const gameOutput = [];
+            const result = window.CoffeeMachineDebug.execute(command, gameOutput);
+            
+            if (result === 'menu' || cmd === 'exit') {
+                // Return to normal terminal
+                const responseLine = document.createElement('div');
+                responseLine.style.whiteSpace = 'pre-wrap';
+                responseLine.style.marginBottom = '0.5rem';
+                responseLine.textContent = cmd === 'exit'
+                    ? (currentLang === 'pt' 
+                        ? '\nConnection closed. Retornando ao terminal normal...\n'
+                        : currentLang === 'en'
+                        ? '\nConnection closed. Returning to normal terminal...\n'
+                        : '\nConnection closed. Volviendo al terminal normal...\n')
+                    : (currentLang === 'pt' 
+                        ? '\n☕ Voltando ao terminal normal...\n'
+                        : currentLang === 'en'
+                        ? '\n☕ Returning to normal terminal...\n'
+                        : '\n☕ Volviendo al terminal normal...\n');
+                output.appendChild(responseLine);
+                window.CoffeeMachineDebug.reset();
+                updateTerminalPrompt();
+            } else if (result && result.stream) {
+                const delayMs = 450;
+                let index = 0;
+                const streamLine = document.createElement('div');
+                streamLine.style.whiteSpace = 'pre-wrap';
+                streamLine.style.marginBottom = '0.5rem';
+                output.appendChild(streamLine);
+                updateTerminalPrompt();
+                
+                const lines = result.lines || [];
+                const interval = setInterval(() => {
+                    if (index < lines.length) {
+                        streamLine.textContent += (index === 0 ? '' : '\n') + lines[index];
+                        index++;
+                        document.querySelector('.terminal-body').scrollTop = document.querySelector('.terminal-body').scrollHeight;
+                    } else {
+                        clearInterval(interval);
+                        if (result.onDone) result.onDone();
+                        updateTerminalPrompt();
+                    }
+                }, delayMs);
+            } else if (gameOutput.length > 0) {
+                const responseLine = document.createElement('div');
+                responseLine.style.whiteSpace = 'pre-wrap';
+                responseLine.style.marginBottom = '0.5rem';
+                responseLine.textContent = gameOutput.join('\n');
+                output.appendChild(responseLine);
+            }
+            
+            // Scroll to bottom
+            document.querySelector('.terminal-body').scrollTop = document.querySelector('.terminal-body').scrollHeight;
+            updateTerminalPrompt();
+            return;
+        }
         
         // Add command to output
         const commandLine = document.createElement('div');
         commandLine.innerHTML = `<span style="color: #00ffff;">mateus@portfolio:~$</span> ${command}`;
         output.appendChild(commandLine);
         
+        // Check for 'play' command to start game
+        if (cmd === 'play') {
+            const gameIntro = window.CoffeeMachineDebug.start(currentLang);
+            const responseLine = document.createElement('div');
+            responseLine.style.whiteSpace = 'pre-wrap';
+            responseLine.style.marginBottom = '0.5rem';
+            responseLine.textContent = gameIntro;
+            output.appendChild(responseLine);
+            updateTerminalPrompt();
+            
+            // Scroll to bottom
+            document.querySelector('.terminal-body').scrollTop = document.querySelector('.terminal-body').scrollHeight;
+            return;
+        }
+        
         // Execute command
         let response = '';
         let isError = false;
         
-        if (terminalCommands[cmd]) {
+        if (Object.prototype.hasOwnProperty.call(terminalCommands, cmd)) {
             if (cmd === 'clear') {
                 output.innerHTML = '';
                 return;
@@ -1130,35 +1326,9 @@ Comandos disponibles:
         
         // Scroll to bottom
         document.querySelector('.terminal-body').scrollTop = document.querySelector('.terminal-body').scrollHeight;
+        updateTerminalPrompt();
     }
 
-    function activateMatrixMode() {
-        const body = document.body;
-        body.style.animation = 'matrix-flash 0.5s ease';
-        
-        // Create matrix rain effect
-        const matrixMessage = document.createElement('div');
-        matrixMessage.style.cssText = `
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 3rem;
-            color: #00ff00;
-            text-shadow: 0 0 30px #00ff00;
-            z-index: 10001;
-            font-family: monospace;
-            animation: fade-in-out 3s ease;
-        `;
-        matrixMessage.textContent = '🟩 MATRIX MODE ACTIVATED 🟩';
-        body.appendChild(matrixMessage);
-        
-        setTimeout(() => {
-            body.removeChild(matrixMessage);
-        }, 3000);
-        
-        console.log('%c🟩 MATRIX MODE ACTIVATED 🟩', 'color: #00ff00; font-size: 20px; font-weight: bold; text-shadow: 0 0 10px #00ff00;');
-    }
 
     // ==================== UTILITY FUNCTIONS ====================
     function updateYear() {

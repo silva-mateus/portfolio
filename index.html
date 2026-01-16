@@ -26,9 +26,9 @@
     <!-- Header / Navigation -->
     <header class="header">
         <nav class="nav">
-            <div class="nav-logo">
+            <a class="nav-logo" href="#hero">
                 <span class="logo-text">Mateus Silva</span>
-            </div>
+            </a>
             <ul class="nav-menu" id="navMenu">
                 <!-- Navigation generated dynamically -->
             </ul>
@@ -46,6 +46,10 @@
                 <button class="lang-toggle" id="langToggle" aria-label="Toggle language" title="Toggle language">
                     <span class="flag-icon" id="flagIcon"></span>
                     <span class="lang-text" id="langText"></span>
+                    <span class="lang-tooltip" id="langTooltip">
+                        <span id="langTooltipTitle">Língua</span>
+                        <span id="langTooltipValue">Português</span>
+                    </span>
                 </button>
                 <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
                     <span></span>
@@ -133,6 +137,7 @@
         </div>
     </div>
 
+    <script src="js/coffee-machine-debug.js"></script>
     <script src="js/app.js"></script>
 </body>
 </html>
