@@ -62,9 +62,9 @@ Comandos disponíveis:
   skills      - Lista minhas habilidades
   contact     - Informações de contato
   projects    - Projetos destacados
-  leaderboard - 🏆 Mostrar ranking
+  leaderboard - Mostrar ranking
   clear       - Limpa o terminal
-  play        - 🎮 Inicia o Coffee Machine Debugger
+  play        - Inicia o Coffee Machine Debugger
             `,
             en: `
 Available commands:
@@ -73,9 +73,9 @@ Available commands:
   skills      - List my skills
   contact     - Contact information
   projects    - Featured projects
-  leaderboard - 🏆 Show ranking
+  leaderboard - Show ranking
   clear       - Clears terminal
-  play        - 🎮 Start Coffee Machine Debugger
+  play        - Start Coffee Machine Debugger
             `,
             es: `
 Comandos disponibles:
@@ -84,9 +84,9 @@ Comandos disponibles:
   skills      - Lista mis habilidades
   contact     - Información de contacto
   projects    - Proyectos destacados
-  leaderboard - 🏆 Mostrar ranking
+  leaderboard - Mostrar ranking
   clear       - Limpia el terminal
-  play        - 🎮 Inicia el Coffee Machine Debugger
+  play        - Inicia el Coffee Machine Debugger
             `
         },
         about: {
@@ -115,7 +115,7 @@ Comandos disponibles:
 
     // ==================== INITIALIZATION ====================
     function init() {
-        console.log('%c⚡ Terminal Portfolio Loaded', 'color: #00ffff; font-size: 16px; font-weight: bold;');
+        console.log('%cTerminal Portfolio Loaded', 'color: #00ffff; font-size: 16px; font-weight: bold;');
         console.log('%cType "help" in the terminal console for Easter eggs!', 'color: #00ff88; font-size: 12px;');
         
         updateLanguageUI();
@@ -127,7 +127,7 @@ Comandos disponibles:
         updateTerminalShortcut();
         
         // Console message
-        console.log(`%c🚀 Pro tip: Press ${terminalShortcut} to open terminal`, 'color: #a855f7; font-size: 12px;');
+        console.log(`%cPro tip: Press ${terminalShortcut} to open terminal`, 'color: #a855f7; font-size: 12px;');
     }
     
     // Update terminal shortcut text
@@ -150,11 +150,11 @@ Comandos disponibles:
                 renderAllContent();
                 initScrollAnimations();
                 initTypingAnimation();
-                console.log('%c✅ Content loaded successfully', 'color: #00ff88;');
+                console.log('%cContent loaded successfully', 'color: #00ff88;');
             })
             .catch(error => {
                 console.error('Error loading content:', error);
-                document.body.innerHTML = '<div style="padding: 2rem; text-align: center; font-family: monospace; color: #00ff88; background: #0a0a0f; min-height: 100vh; display: flex; align-items: center; justify-content: center;"><div><h1 style="color: #00ffff;">⚠️ Error Loading Portfolio</h1><p>Please use a local server (HTTP) to view this portfolio.</p><p>Run: <code style="background: #1a1a2e; padding: 0.5rem; border-radius: 4px;">python -m http.server 8000</code></p><p>Or use: <code style="background: #1a1a2e; padding: 0.5rem; border-radius: 4px;">start-server.bat</code></p></div></div>';
+                document.body.innerHTML = '<div style="padding: 2rem; text-align: center; font-family: monospace; color: #00ff88; background: #0a0a0f; min-height: 100vh; display: flex; align-items: center; justify-content: center;"><div><h1 style="color: #00ffff;">Error Loading Portfolio</h1><p>Please use a local server (HTTP) to view this portfolio.</p><p>Run: <code style="background: #1a1a2e; padding: 0.5rem; border-radius: 4px;">python -m http.server 8000</code></p><p>Or use: <code style="background: #1a1a2e; padding: 0.5rem; border-radius: 4px;">start-server.bat</code></p></div></div>';
             });
     }
 
@@ -1077,10 +1077,10 @@ Comandos disponibles:
                 responseLine.style.whiteSpace = 'pre-wrap';
                 responseLine.style.marginBottom = '0.5rem';
                 responseLine.textContent = currentLang === 'pt' 
-                    ? '\n☕ Voltando ao terminal normal...\n'
+                    ? '\nVoltando ao terminal normal...\n'
                     : currentLang === 'en'
-                    ? '\n☕ Returning to normal terminal...\n'
-                    : '\n☕ Volviendo al terminal normal...\n';
+                    ? '\nReturning to normal terminal...\n'
+                    : '\nVolviendo al terminal normal...\n';
                 output.appendChild(responseLine);
                 
                 document.querySelector('.terminal-body').scrollTop = document.querySelector('.terminal-body').scrollHeight;
@@ -1134,10 +1134,10 @@ Comandos disponibles:
                 responseLine.style.whiteSpace = 'pre-wrap';
                 responseLine.style.marginBottom = '0.5rem';
                 responseLine.textContent = currentLang === 'pt'
-                    ? '❌ Nome inválido. Digite apenas seu nome.'
+                    ? 'Erro: nome inválido. Digite apenas seu nome.'
                     : currentLang === 'en'
-                    ? '❌ Invalid name. Please enter only your name.'
-                    : '❌ Nombre inválido. Escribe solo tu nombre.';
+                    ? 'Error: invalid name. Please enter only your name.'
+                    : 'Error: nombre inválido. Escribe solo tu nombre.';
                 output.appendChild(responseLine);
                 updateTerminalPrompt();
                 return;
@@ -1156,10 +1156,10 @@ Comandos disponibles:
                 
                 if (result.success) {
                     responseLine.textContent = currentLang === 'pt' 
-                        ? `\n📊 Salvando no ranking...\n\n🎊 POSIÇÃO NO RANKING: #${result.rank}\n`
+                        ? `\nSalvando no ranking...\n\nPOSIÇÃO NO RANKING: #${result.rank}\n`
                         : currentLang === 'en'
-                        ? `\n📊 Saving to ranking...\n\n🎊 RANKING POSITION: #${result.rank}\n`
-                        : `\n📊 Guardando en el ranking...\n\n🎊 POSICIÓN EN EL RANKING: #${result.rank}\n`;
+                        ? `\nSaving to ranking...\n\nRANKING POSITION: #${result.rank}\n`
+                        : `\nGuardando en el ranking...\n\nPOSICIÓN EN EL RANKING: #${result.rank}\n`;
                     
                     output.appendChild(responseLine);
                     
@@ -1175,7 +1175,7 @@ Comandos disponibles:
                         document.querySelector('.terminal-body').scrollTop = document.querySelector('.terminal-body').scrollHeight;
                     });
                 } else {
-                    responseLine.textContent = `\n❌ Error: ${result.error}\n`;
+                    responseLine.textContent = `\nError: ${result.error}\n`;
                     output.appendChild(responseLine);
                 }
                 
@@ -1194,10 +1194,10 @@ Comandos disponibles:
             responseLine.style.whiteSpace = 'pre-wrap';
             responseLine.style.marginBottom = '0.5rem';
             responseLine.textContent = currentLang === 'pt'
-                ? '⏳ Aguarde o fim do processo...'
+                ? 'Aguarde o fim do processo...'
                 : currentLang === 'en'
-                ? '⏳ Please wait for the process to finish...'
-                : '⏳ Por favor espera a que termine el proceso...';
+                ? 'Please wait for the process to finish...'
+                : 'Por favor espera a que termine el proceso...';
             output.appendChild(responseLine);
             document.querySelector('.terminal-body').scrollTop = document.querySelector('.terminal-body').scrollHeight;
             updateTerminalPrompt();
@@ -1231,10 +1231,10 @@ Comandos disponibles:
                         ? '\nConnection closed. Returning to normal terminal...\n'
                         : '\nConnection closed. Volviendo al terminal normal...\n')
                     : (currentLang === 'pt' 
-                        ? '\n☕ Voltando ao terminal normal...\n'
+                        ? '\nVoltando ao terminal normal...\n'
                         : currentLang === 'en'
-                        ? '\n☕ Returning to normal terminal...\n'
-                        : '\n☕ Volviendo al terminal normal...\n');
+                        ? '\nReturning to normal terminal...\n'
+                        : '\nVolviendo al terminal normal...\n');
                 output.appendChild(responseLine);
                 window.CoffeeMachineDebug.reset();
                 updateTerminalPrompt();
@@ -1284,10 +1284,10 @@ Comandos disponibles:
             responseLine.style.whiteSpace = 'pre-wrap';
             responseLine.style.marginBottom = '0.5rem';
             responseLine.textContent = currentLang === 'pt'
-                ? '📊 Buscando ranking...'
+                ? 'Buscando ranking...'
                 : currentLang === 'en'
-                ? '📊 Fetching leaderboard...'
-                : '📊 Buscando ranking...';
+                ? 'Fetching leaderboard...'
+                : 'Buscando ranking...';
             output.appendChild(responseLine);
 
             window.CoffeeMachineDebug.displayLeaderboard([], '').then(() => {

@@ -23,9 +23,9 @@
     // ==================== MULTILINGUAL CONTENT ====================
     const content = {
         pt: {
-            title: "☕ COFFEE MACHINE DEBUGGER ☕",
-            incident: "🚨 INCIDENTE: Serviço de café offline",
-            priority: "Prioridade: CRÍTICA ☕💀",
+            title: "COFFEE MACHINE DEBUGGER",
+            incident: "INCIDENTE: Serviço de café offline",
+            priority: "Prioridade: CRÍTICA",
             status: "STATUS: O coffee-daemon parou após atualização",
             objective: "OBJETIVO: Localizar e executar o script de reinicialização",
         sshConnecting: "Conectando em coffee-machine...",
@@ -41,31 +41,31 @@
             execCommands: "  ./[script]                 - Executar script",
         exitCommand: "  exit                       - Sair (desconectar)",
             startPrompt: "Digite 'ls' para começar a investigação...",
-            timerStarted: "⏱️ TIMER INICIADO!",
-            discovery: "💡 DESCOBERTA:",
-            clue: "💡 PISTA:",
-            scriptFound: "🎯 SCRIPT ENCONTRADO!",
+            timerStarted: "TIMER INICIADO!",
+            discovery: "DESCOBERTA:",
+            clue: "PISTA:",
+            scriptFound: "SCRIPT ENCONTRADO!",
             toComplete: "Para completar a missão, execute:",
-            missionComplete: "🎉 MISSÃO CUMPRIDA! 🎉",
+            missionComplete: "MISSÃO CUMPRIDA!",
             congratulations: "Você debugou o sistema e reiniciou o serviço de café!",
-            teamThanks: "A equipe de desenvolvimento agradece. ☕",
-            finalStats: "📊 ESTATÍSTICAS FINAIS:",
-            totalTime: "⏱️  Tempo Total:",
-            filesInvestigated: "📁 Arquivos Investigados:",
-            commandsExecuted: "🔍 Comandos Executados:",
-            efficiency: "🎯 Eficiência:",
-            calculating: "💯 CALCULANDO SCORE...",
+            teamThanks: "A equipe de desenvolvimento agradece.",
+            finalStats: "ESTATÍSTICAS FINAIS:",
+            totalTime: "Tempo Total:",
+            filesInvestigated: "Arquivos Investigados:",
+            commandsExecuted: "Comandos Executados:",
+            efficiency: "Eficiência:",
+            calculating: "CALCULANDO SCORE...",
             baseScore: "Score Base:",
-            speedBonus: "⚡ Bônus Velocidade:",
-            efficiencyBonus: "🎯 Bônus Eficiência:",
-            investigationBonus: "🧠 Bônus Investigação:",
-            technicalBonus: "📊 Bônus Técnico:",
-            finalScore: "🏆 SCORE FINAL:",
+            speedBonus: "Bônus Velocidade:",
+            efficiencyBonus: "Bônus Eficiência:",
+            investigationBonus: "Bônus Investigação:",
+            technicalBonus: "Bônus Técnico:",
+            finalScore: "SCORE FINAL:",
             enterName: "Digite seu nome para o Hall of Fame:",
-            savingRank: "📊 Salvando no ranking...",
-            position: "🎊 POSIÇÃO NO RANKING:",
-            topHunters: "🏆 TOP 10 COFFEE DEBUGGERS",
-            you: "← VOCÊ",
+            savingRank: "Salvando no ranking...",
+            position: "POSIÇÃO NO RANKING:",
+            topHunters: "TOP 10 COFFEE DEBUGGERS",
+            you: "<- VOCÊ",
             backToTerminal: "Digite 'menu' para voltar ao terminal normal",
             playAgain: "ou 'play' para jogar novamente!",
             commandNotFound: "Comando não encontrado:",
@@ -83,9 +83,9 @@
             needsImprovement: "PRECISA MELHORAR"
         },
         en: {
-            title: "☕ COFFEE MACHINE DEBUGGER ☕",
-            incident: "🚨 INCIDENT: Coffee service offline",
-            priority: "Priority: CRITICAL ☕💀",
+            title: "COFFEE MACHINE DEBUGGER",
+            incident: "INCIDENT: Coffee service offline",
+            priority: "Priority: CRITICAL",
             status: "STATUS: coffee-daemon stopped after update",
             objective: "OBJECTIVE: Locate and execute the restart script",
         sshConnecting: "Connecting to coffee-machine...",
@@ -101,31 +101,31 @@
             execCommands: "  ./[script]                 - Execute script",
         exitCommand: "  exit                       - Exit (disconnect)",
             startPrompt: "Type 'ls' to start investigation...",
-            timerStarted: "⏱️ TIMER STARTED!",
-            discovery: "💡 DISCOVERY:",
-            clue: "💡 CLUE:",
-            scriptFound: "🎯 SCRIPT FOUND!",
+            timerStarted: "TIMER STARTED!",
+            discovery: "DISCOVERY:",
+            clue: "CLUE:",
+            scriptFound: "SCRIPT FOUND!",
             toComplete: "To complete the mission, execute:",
-            missionComplete: "🎉 MISSION ACCOMPLISHED! 🎉",
+            missionComplete: "MISSION ACCOMPLISHED!",
             congratulations: "You debugged the system and restarted the coffee service!",
-            teamThanks: "The development team thanks you. ☕",
-            finalStats: "📊 FINAL STATISTICS:",
-            totalTime: "⏱️  Total Time:",
-            filesInvestigated: "📁 Files Investigated:",
-            commandsExecuted: "🔍 Commands Executed:",
-            efficiency: "🎯 Efficiency:",
-            calculating: "💯 CALCULATING SCORE...",
+            teamThanks: "The development team thanks you.",
+            finalStats: "FINAL STATISTICS:",
+            totalTime: "Total Time:",
+            filesInvestigated: "Files Investigated:",
+            commandsExecuted: "Commands Executed:",
+            efficiency: "Efficiency:",
+            calculating: "CALCULATING SCORE...",
             baseScore: "Base Score:",
-            speedBonus: "⚡ Speed Bonus:",
-            efficiencyBonus: "🎯 Efficiency Bonus:",
-            investigationBonus: "🧠 Investigation Bonus:",
-            technicalBonus: "📊 Technical Bonus:",
-            finalScore: "🏆 FINAL SCORE:",
+            speedBonus: "Speed Bonus:",
+            efficiencyBonus: "Efficiency Bonus:",
+            investigationBonus: "Investigation Bonus:",
+            technicalBonus: "Technical Bonus:",
+            finalScore: "FINAL SCORE:",
             enterName: "Enter your name for the Hall of Fame:",
-            savingRank: "📊 Saving to ranking...",
-            position: "🎊 RANKING POSITION:",
-            topHunters: "🏆 TOP 10 COFFEE DEBUGGERS",
-            you: "← YOU",
+            savingRank: "Saving to ranking...",
+            position: "RANKING POSITION:",
+            topHunters: "TOP 10 COFFEE DEBUGGERS",
+            you: "<- YOU",
             backToTerminal: "Type 'menu' to return to normal terminal",
             playAgain: "or 'play' to play again!",
             commandNotFound: "Command not found:",
@@ -143,9 +143,9 @@
             needsImprovement: "NEEDS IMPROVEMENT"
         },
         es: {
-            title: "☕ COFFEE MACHINE DEBUGGER ☕",
-            incident: "🚨 INCIDENTE: Servicio de café offline",
-            priority: "Prioridad: CRÍTICA ☕💀",
+            title: "COFFEE MACHINE DEBUGGER",
+            incident: "INCIDENTE: Servicio de café offline",
+            priority: "Prioridad: CRÍTICA",
             status: "ESTADO: coffee-daemon paró después de actualización",
             objective: "OBJETIVO: Localizar y ejecutar el script de reinicio",
         sshConnecting: "Conectando a coffee-machine...",
@@ -161,31 +161,31 @@
             execCommands: "  ./[script]                 - Ejecutar script",
         exitCommand: "  exit                       - Salir (desconectar)",
             startPrompt: "Escribe 'ls' para comenzar la investigación...",
-            timerStarted: "⏱️ TEMPORIZADOR INICIADO!",
-            discovery: "💡 DESCUBRIMIENTO:",
-            clue: "💡 PISTA:",
-            scriptFound: "🎯 SCRIPT ENCONTRADO!",
+            timerStarted: "TEMPORIZADOR INICIADO!",
+            discovery: "DESCUBRIMIENTO:",
+            clue: "PISTA:",
+            scriptFound: "SCRIPT ENCONTRADO!",
             toComplete: "Para completar la misión, ejecuta:",
-            missionComplete: "🎉 MISIÓN CUMPLIDA! 🎉",
+            missionComplete: "MISIÓN CUMPLIDA!",
             congratulations: "¡Debugeaste el sistema y reiniciaste el servicio de café!",
-            teamThanks: "El equipo de desarrollo te agradece. ☕",
-            finalStats: "📊 ESTADÍSTICAS FINALES:",
-            totalTime: "⏱️  Tiempo Total:",
-            filesInvestigated: "📁 Archivos Investigados:",
-            commandsExecuted: "🔍 Comandos Ejecutados:",
-            efficiency: "🎯 Eficiencia:",
-            calculating: "💯 CALCULANDO PUNTAJE...",
+            teamThanks: "El equipo de desarrollo te agradece.",
+            finalStats: "ESTADÍSTICAS FINALES:",
+            totalTime: "Tiempo Total:",
+            filesInvestigated: "Archivos Investigados:",
+            commandsExecuted: "Comandos Ejecutados:",
+            efficiency: "Eficiencia:",
+            calculating: "CALCULANDO PUNTAJE...",
             baseScore: "Puntaje Base:",
-            speedBonus: "⚡ Bonus Velocidad:",
-            efficiencyBonus: "🎯 Bonus Eficiencia:",
-            investigationBonus: "🧠 Bonus Investigación:",
-            technicalBonus: "📊 Bonus Técnico:",
-            finalScore: "🏆 PUNTAJE FINAL:",
+            speedBonus: "Bonus Velocidad:",
+            efficiencyBonus: "Bonus Eficiencia:",
+            investigationBonus: "Bonus Investigación:",
+            technicalBonus: "Bonus Técnico:",
+            finalScore: "PUNTAJE FINAL:",
             enterName: "Escribe tu nombre para el Hall of Fame:",
-            savingRank: "📊 Guardando en el ranking...",
-            position: "🎊 POSICIÓN EN EL RANKING:",
-            topHunters: "🏆 TOP 10 COFFEE DEBUGGERS",
-            you: "← TÚ",
+            savingRank: "Guardando en el ranking...",
+            position: "POSICIÓN EN EL RANKING:",
+            topHunters: "TOP 10 COFFEE DEBUGGERS",
+            you: "<- TÚ",
             backToTerminal: "Escribe 'menu' para volver al terminal normal",
             playAgain: "o 'play' para jugar de nuevo!",
             commandNotFound: "Comando no encontrado:",
@@ -241,7 +241,7 @@ cat /var/log/coffee.log`
         '/home/dev/notes.txt': { 
             type: 'file', 
             content: {
-                pt: `📝 Notas Pessoais - Dev Sênior
+                pt: `Notas Pessoais - Dev Sênior
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 TODO para segunda-feira:
 - Checar logs em /var/log/ depois da atualização
@@ -252,7 +252,7 @@ TODO para segunda-feira:
 LEMBRETE: A equipe de DevOps moveu alguns
 serviços para diretórios temporários durante
 o security patch. Checar /tmp/ se algo quebrar.`,
-                en: `📝 Personal Notes - Senior Dev
+                en: `Personal Notes - Senior Dev
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 TODO for Monday:
 - Check logs in /var/log/ after the update
@@ -263,7 +263,7 @@ TODO for Monday:
 REMINDER: DevOps team moved some services
 to temporary directories during the security
 patch. Check /tmp/ if something breaks.`,
-                es: `📝 Notas Personales - Dev Senior
+                es: `Notas Personales - Dev Senior
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 TODO para el lunes:
 - Revisar logs en /var/log/ después de la actualización
@@ -360,7 +360,7 @@ new_path: /usr/local/bin/`
         '/var/log/coffee.log': { 
             type: 'file',
             content: {
-                pt: `☕ Coffee Service Log
+                pt: `Coffee Service Log
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 [2026-01-13 08:45:12] INFO: Service started
 [2026-01-13 08:45:13] INFO: Connected to machine at 192.168.1.50
@@ -370,7 +370,7 @@ new_path: /usr/local/bin/`
 [2026-01-13 10:00:00] INFO: Update script executed
 [2026-01-13 10:00:01] INFO: Binary relocated to /tmp/.cache/
 [2026-01-13 10:00:02] WARN: Service not restarted automatically`,
-                en: `☕ Coffee Service Log
+                en: `Coffee Service Log
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 [2026-01-13 08:45:12] INFO: Service started
 [2026-01-13 08:45:13] INFO: Connected to machine at 192.168.1.50
@@ -380,7 +380,7 @@ new_path: /usr/local/bin/`
 [2026-01-13 10:00:00] INFO: Update script executed
 [2026-01-13 10:00:01] INFO: Binary relocated to /tmp/.cache/
 [2026-01-13 10:00:02] WARN: Service not restarted automatically`,
-                es: `☕ Coffee Service Log
+                es: `Coffee Service Log
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 [2026-01-13 08:45:12] INFO: Servicio iniciado
 [2026-01-13 08:45:13] INFO: Conectado a máquina en 192.168.1.50
@@ -471,21 +471,21 @@ Fecha: 2026-01-13 10:00:00`
 # Script antigo de inicialização
 # DEPRECADO - Use /usr/local/bin/brew-coffee.sh
 
-echo "❌ Este script está deprecado!"
+echo "Este script está deprecado!"
 echo "Use: /usr/local/bin/brew-coffee.sh"
 exit 1`,
                 en: `#!/bin/bash
 # Old initialization script
 # DEPRECATED - Use /usr/local/bin/brew-coffee.sh
 
-echo "❌ This script is deprecated!"
+echo "This script is deprecated!"
 echo "Use: /usr/local/bin/brew-coffee.sh"
 exit 1`,
                 es: `#!/bin/bash
 # Script antiguo de inicialización
 # DEPRECADO - Usa /usr/local/bin/brew-coffee.sh
 
-echo "❌ Este script está deprecado!"
+echo "Este script está deprecado!"
 echo "Usa: /usr/local/bin/brew-coffee.sh"
 exit 1`
             }
@@ -625,7 +625,7 @@ exit 1`
 # Location: /usr/local/bin/brew-coffee.sh
 # Version: 2.1.0
 
-echo "☕ Inicializando Coffee Machine..."
+echo "Inicializando Coffee Machine..."
 echo "Conectando em 192.168.1.50:8080..."
 echo "Aquecendo água a 93°C..."
 echo "Moendo grãos..."
@@ -633,14 +633,14 @@ echo "Pressurizando (9 bars)..."
 
 sleep 2
 
-echo "✅ Máquina de café pronta!"
+echo "Máquina de café pronta!"
 echo "Service: coffee-daemon started (PID: 2048)"`,
                 en: `#!/bin/bash
 # Coffee Machine Initialization Script
 # Location: /usr/local/bin/brew-coffee.sh
 # Version: 2.1.0
 
-echo "☕ Initializing Coffee Machine..."
+echo "Initializing Coffee Machine..."
 echo "Connecting to 192.168.1.50:8080..."
 echo "Heating water to 93°C..."
 echo "Grinding beans..."
@@ -648,14 +648,14 @@ echo "Pressurizing (9 bars)..."
 
 sleep 2
 
-echo "✅ Coffee machine ready!"
+echo "Coffee machine ready!"
 echo "Service: coffee-daemon started (PID: 2048)"`,
                 es: `#!/bin/bash
 # Coffee Machine Initialization Script
 # Location: /usr/local/bin/brew-coffee.sh
 # Version: 2.1.0
 
-echo "☕ Inicializando Coffee Machine..."
+echo "Inicializando Coffee Machine..."
 echo "Conectando a 192.168.1.50:8080..."
 echo "Calentando agua a 93°C..."
 echo "Moliendo granos..."
@@ -663,7 +663,7 @@ echo "Presurizando (9 bars)..."
 
 sleep 2
 
-echo "✅ Máquina de café lista!"
+echo "Máquina de café lista!"
 echo "Service: coffee-daemon started (PID: 2048)"`
             }
         },
@@ -919,11 +919,11 @@ OLD_LOCATION=/opt/coffee/`
     }
 
     function getRankBadge(score) {
-        if (score >= 15000) return { icon: '👑', title: 'Elite DevOps', tier: 'S' };
-        if (score >= 13000) return { icon: '🔥', title: 'Senior Debugger', tier: 'A' };
-        if (score >= 11000) return { icon: '⚡', title: 'System Detective', tier: 'B' };
-        if (score >= 9000) return { icon: '☕', title: 'Coffee Hunter', tier: 'C' };
-        return { icon: '🔍', title: 'Bug Tracker', tier: 'D' };
+        if (score >= 15000) return { icon: 'S', title: 'Elite DevOps', tier: 'S' };
+        if (score >= 13000) return { icon: 'A', title: 'Senior Debugger', tier: 'A' };
+        if (score >= 11000) return { icon: 'B', title: 'System Detective', tier: 'B' };
+        if (score >= 9000) return { icon: 'C', title: 'Coffee Hunter', tier: 'C' };
+        return { icon: 'D', title: 'Bug Tracker', tier: 'D' };
     }
 
     // ==================== COMMAND IMPLEMENTATIONS ====================
@@ -944,9 +944,9 @@ OLD_LOCATION=/opt/coffee/`
             const itemPath = (fullPath === '/' ? '/' : fullPath + '/') + item;
             const itemData = virtualFS[itemPath];
             if (itemData && itemData.type === 'dir') {
-                return `📁 ${item}/`;
+                return `${item}/`;
             }
-            return `📄 ${item}`;
+            return `${item}`;
         });
         
         output.push(formatted.join('  '));
@@ -1004,35 +1004,35 @@ OLD_LOCATION=/opt/coffee/`
         // Show stats
         const elapsed = Math.floor((Date.now() - gameState.startTime) / 1000);
         output.push('');
-        output.push(`⏱️ ${formatTime(elapsed)}  |  📁 ${gameState.filesRead.size} ${getText('filesInvestigated').toLowerCase()}`);
+        output.push(`${formatTime(elapsed)}  |  ${gameState.filesRead.size} ${getText('filesInvestigated').toLowerCase()}`);
     }
 
     function addDiscoveries(fullPath, output) {
         const discoveries = {
             '/var/log/coffee.log': {
-                pt: '\n💡 DESCOBERTA: Binário foi movido para /tmp/.cache/!',
-                en: '\n💡 DISCOVERY: Binary was moved to /tmp/.cache/!',
-                es: '\n💡 DESCUBRIMIENTO: ¡Binario fue movido a /tmp/.cache/!'
+                pt: '\nDESCOBERTA: Binário foi movido para /tmp/.cache/!',
+                en: '\nDISCOVERY: Binary was moved to /tmp/.cache/!',
+                es: '\nDESCUBRIMIENTO: ¡Binario fue movido a /tmp/.cache/!'
             },
             '/tmp/.cache/env.conf': {
-                pt: '\n💡 DESCOBERTA: O script principal está em /usr/local/bin/!',
-                en: '\n💡 DISCOVERY: The main script is at /usr/local/bin/!',
-                es: '\n💡 DESCUBRIMIENTO: ¡El script principal está en /usr/local/bin/!'
+                pt: '\nDESCOBERTA: O script principal está em /usr/local/bin/!',
+                en: '\nDISCOVERY: The main script is at /usr/local/bin/!',
+                es: '\nDESCUBRIMIENTO: ¡El script principal está en /usr/local/bin/!'
             },
             '/etc/systemd/system/coffee.service': {
-                pt: '\n💡 DESCOBERTA: O serviço usa /usr/local/bin/brew-coffee.sh!\n   Esse deve ser o script de inicialização!',
-                en: '\n💡 DISCOVERY: The service uses /usr/local/bin/brew-coffee.sh!\n   This must be the initialization script!',
-                es: '\n💡 DESCUBRIMIENTO: ¡El servicio usa /usr/local/bin/brew-coffee.sh!\n   ¡Este debe ser el script de inicialización!'
+                pt: '\nDESCOBERTA: O serviço usa /usr/local/bin/brew-coffee.sh!\n   Esse deve ser o script de inicialização!',
+                en: '\nDISCOVERY: The service uses /usr/local/bin/brew-coffee.sh!\n   This must be the initialization script!',
+                es: '\nDESCUBRIMIENTO: ¡El servicio usa /usr/local/bin/brew-coffee.sh!\n   ¡Este debe ser el script de inicialización!'
             },
             '/etc/environment': {
-                pt: '\n💡 PISTA: COFFEE_SCRIPT_PATH aponta para /usr/local/bin/!',
-                en: '\n💡 CLUE: COFFEE_SCRIPT_PATH points to /usr/local/bin/!',
-                es: '\n💡 PISTA: ¡COFFEE_SCRIPT_PATH apunta a /usr/local/bin/!'
+                pt: '\nPISTA: COFFEE_SCRIPT_PATH aponta para /usr/local/bin/!',
+                en: '\nCLUE: COFFEE_SCRIPT_PATH points to /usr/local/bin/!',
+                es: '\nPISTA: ¡COFFEE_SCRIPT_PATH apunta a /usr/local/bin/!'
             },
             '/usr/local/bin/brew-coffee.sh': {
-                pt: '\n🎯 SCRIPT ENCONTRADO!\n   /usr/local/bin/brew-coffee.sh\n\nPara completar a missão, execute:\n  ./brew-coffee.sh',
-                en: '\n🎯 SCRIPT FOUND!\n   /usr/local/bin/brew-coffee.sh\n\nTo complete the mission, execute:\n  ./brew-coffee.sh',
-                es: '\n🎯 SCRIPT ENCONTRADO!\n   /usr/local/bin/brew-coffee.sh\n\nPara completar la misión, ejecuta:\n  ./brew-coffee.sh'
+                pt: '\nSCRIPT ENCONTRADO!\n   /usr/local/bin/brew-coffee.sh\n\nPara completar a missão, execute:\n  ./brew-coffee.sh',
+                en: '\nSCRIPT FOUND!\n   /usr/local/bin/brew-coffee.sh\n\nTo complete the mission, execute:\n  ./brew-coffee.sh',
+                es: '\nSCRIPT ENCONTRADO!\n   /usr/local/bin/brew-coffee.sh\n\nPara completar la misión, ejecuta:\n  ./brew-coffee.sh'
             }
         };
         
@@ -1051,7 +1051,7 @@ OLD_LOCATION=/opt/coffee/`
             output.push('dev        789     1  /bin/bash');
             output.push('root      1337     1  [coffee-daemon] <defunct>  ⚠️');
             output.push('');
-            output.push(`💡 ${getText('discovery')} ${getText('processDefunct')}`);
+            output.push(`${getText('discovery')} ${getText('processDefunct')}`);
             output.push('   Processo coffee-daemon (PID 1337) está defunct!');
         } else {
             output.push('  PID TTY          TIME CMD');
@@ -1206,38 +1206,38 @@ OLD_LOCATION=/opt/coffee/`
         const scriptLines = gameState.currentLang === 'pt'
             ? [
                 '',
-                '☕ Inicializando Coffee Machine...',
+                'Inicializando Coffee Machine...',
                 'Conectando em 192.168.1.50:8080...',
                 'Aquecendo água a 93°C...',
                 'Moendo grãos...',
                 'Pressurizando (9 bars)...',
                 '',
-                '✅ Máquina de café pronta!',
+                'Máquina de café pronta!',
                 'Service: coffee-daemon started (PID: 2048)',
                 ''
             ]
             : gameState.currentLang === 'en'
             ? [
                 '',
-                '☕ Initializing Coffee Machine...',
+                'Initializing Coffee Machine...',
                 'Connecting to 192.168.1.50:8080...',
                 'Heating water to 93°C...',
                 'Grinding beans...',
                 'Pressurizing (9 bars)...',
                 '',
-                '✅ Coffee machine ready!',
+                'Coffee machine ready!',
                 'Service: coffee-daemon started (PID: 2048)',
                 ''
             ]
             : [
                 '',
-                '☕ Inicializando Coffee Machine...',
+                'Inicializando Coffee Machine...',
                 'Conectando a 192.168.1.50:8080...',
                 'Calentando agua a 93°C...',
                 'Moliendo granos...',
                 'Presurizando (9 bars)...',
                 '',
-                '✅ Máquina de café lista!',
+                'Máquina de café lista!',
                 'Service: coffee-daemon started (PID: 2048)',
                 ''
             ];
