@@ -395,7 +395,6 @@ Comandos disponibles:
         container.innerHTML = `
             <h2 class="section-title animate-on-scroll">${contact.title}</h2>
             <div class="contact-content animate-on-scroll">
-                <p class="contact-description">${contact.description}</p>
                 <div class="contact-links">
                     <a href="mailto:${contact.email}" class="contact-link">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -424,9 +423,6 @@ Comandos disponibles:
                         </svg>
                         <span>${contact.cv_text}</span>
                     </a>
-                </div>
-                <div class="contact-cta">
-                    <p class="contact-cta-text">${contact.cta}</p>
                 </div>
             </div>
         `;

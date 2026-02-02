@@ -1047,34 +1047,28 @@
   },
   "contact": {
     "pt": {
-      "title": "Vamos Conversar",
-      "description": "Entre em contato para discutir como posso agregar valor ao seu time ou projeto.",
+      "title": "Entre em Contato",
       "email": "thi.hero2012@gmail.com",
       "github": "https://github.com/silva-mateus",
       "linkedin": "https://www.linkedin.com/in/mhassilvamat/",
       "cv_url": "assets/mateus-resume.pdf",
-      "cv_text": "Download CV",
-      "cta": "Disponível para projetos PJ e consultorias técnicas"
+      "cv_text": "Download CV"
     },
     "en": {
-      "title": "Let's Talk",
-      "description": "Reach out to discuss how I can add value to your team or project.",
+      "title": "Get in Touch",
       "email": "thi.hero2012@gmail.com",
       "github": "https://github.com/silva-mateus",
       "linkedin": "https://www.linkedin.com/in/mhassilvamat/",
       "cv_url": "assets/mateus-resume.pdf",
-      "cv_text": "Download Resume",
-      "cta": "Available for freelance projects and technical consulting"
+      "cv_text": "Download Resume"
     },
     "es": {
-      "title": "Conversemos",
-      "description": "Contáctame para discutir cómo puedo agregar valor a tu equipo o proyecto.",
+      "title": "Contáctame",
       "email": "thi.hero2012@gmail.com",
       "github": "https://github.com/silva-mateus",
       "linkedin": "https://www.linkedin.com/in/mhassilvamat/",
       "cv_url": "assets/mateus-resume.pdf",
-      "cv_text": "Descargar CV",
-      "cta": "Disponible para proyectos freelance y consultoría técnica"
+      "cv_text": "Descargar CV"
     }
   },
   "footer": {
