@@ -1,6 +1,8 @@
 # Terminal Portfolio - Mateus Silva
 
-Backend engineer portfolio with an interactive terminal theme and a small terminal game.
+Backend engineer portfolio with an interactive terminal theme.
+
+There is a hidden terminal easter egg for curious visitors who want to explore and play.
 
 ## Local Setup
 
