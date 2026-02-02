@@ -7,30 +7,6 @@ services:
       - "8080:80"
     networks:
       - portfolio-network
-    depends_on:
-      - api
-
-  api:
-    build:
-      context: .
-      dockerfile: Dockerfile.api
-    container_name: portfolio-api
-    restart: unless-stopped
-    networks:
-      - portfolio-network
-    volumes:
-      - highscores-data:/app/data
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Production
-      - SMTP_USER=${SMTP_USER}
-      - SMTP_APP_PASSWORD=${SMTP_APP_PASSWORD}
-      - SMTP_TO=${SMTP_TO}
-      - SMTP_FROM=${SMTP_FROM}
-    healthcheck:
-      test: ["CMD-SHELL", "curl -fsS http://localhost:5000/api/health || exit 1"]
-      interval: 30s
-      timeout: 5s
-      retries: 3
 
   cloudflared:
     image: cloudflare/cloudflared:latest
@@ -41,11 +17,7 @@ services:
       - portfolio-network
     depends_on:
       - portfolio
-      - api
 
 networks:
   portfolio-network:
     driver: bridge
-
-volumes:
-  highscores-data:

@@ -1080,15 +1080,15 @@
   "footer": {
     "pt": {
       "rights": "Todos os direitos reservados.",
-      "built": "Desenvolvido com HTML, CSS e JavaScript puro"
+      "built": "Desenvolvido com HTML, CSS e JavaScript puro, e uma API simples em C#"
     },
     "en": {
       "rights": "All rights reserved.",
-      "built": "Built with pure HTML, CSS, and JavaScript"
+      "built": "Built with pure HTML, CSS, and JavaScript, plus a simple C# API"
     },
     "es": {
       "rights": "Todos los derechos reservados.",
-      "built": "Desarrollado con HTML, CSS y JavaScript"
+      "built": "Desarrollado con HTML, CSS y JavaScript, y una API simple en C#"
     }
   }
 }
