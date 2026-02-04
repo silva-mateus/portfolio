@@ -1,8 +1,11 @@
 # Terminal Portfolio - Mateus Silva
 
 Backend engineer portfolio with an interactive terminal theme.
-
 There is a hidden terminal easter egg for curious visitors who want to explore and play.
+
+📄 **View the Portifolio:**  
+You can view the portifolio online here:  
+[https://resume.networkmat.uk/](https://resume.networkmat.uk/)
 
 ## Local Setup
 

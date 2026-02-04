@@ -813,10 +813,23 @@ Comandos disponibles:
         
         const flagIcon = document.getElementById('flagIcon');
         const langText = document.getElementById('langText');
+        const repoTooltipTitle = document.getElementById('repoTooltipTitle');
+        const repoTooltipValue = document.getElementById('repoTooltipValue');
         
         if (flagIcon && langText) {
             flagIcon.innerHTML = `<img src="${langConfig.flag}" alt="${langConfig.name}" class="flag-svg">`;
             langText.textContent = langConfig.code;
+        }
+
+        if (repoTooltipTitle && repoTooltipValue) {
+            const repoText = {
+                pt: { title: 'Repositorio', value: 'Ver no GitHub' },
+                en: { title: 'Repository', value: 'View on GitHub' },
+                es: { title: 'Repositorio', value: 'Ver en GitHub' }
+            };
+            const selected = repoText[currentLang] || repoText.pt;
+            repoTooltipTitle.textContent = selected.title;
+            repoTooltipValue.textContent = selected.value;
         }
     }
 
