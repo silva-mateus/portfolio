@@ -5,6 +5,10 @@ on:
     branches: [ main ]
   workflow_dispatch:
 
+permissions:
+  contents: read
+  packages: write
+  
 jobs:
   deploy:
     uses: silva-mateus/homelab-infra/.github/workflows/reusable-deploy.yml@main
