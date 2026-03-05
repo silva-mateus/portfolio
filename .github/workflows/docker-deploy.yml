@@ -7,46 +7,9 @@ on:
 
 jobs:
   deploy:
-    runs-on: self-hosted
-    
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
-    
-    - name: Build and Deploy
-      working-directory: ${{ github.workspace }}
-      env:
-        CLOUDFLARE_TUNNEL_TOKEN: ${{ secrets.CLOUDFLARE_TUNNEL_TOKEN }}
-        SMTP_USER: ${{ secrets.SMTP_USER }}
-        SMTP_APP_PASSWORD: ${{ secrets.SMTP_APP_PASSWORD }}
-        SMTP_TO: ${{ secrets.SMTP_TO }}
-        SMTP_FROM: ${{ secrets.SMTP_FROM }}
-      run: |
-        echo "📂 Working directory: $(pwd)"
-        echo "📋 Files:"
-        ls -la
-        
-        # Parar containers antigos
-        docker compose down || true
-        
-        # Build sem cache
-        docker compose build --no-cache
-        
-        # Subir containers
-        docker compose up -d
-        
-        # Limpar imagens antigas
-        docker image prune -f
-        
-        # Verificar status
-        echo "✅ Containers rodando:"
-        docker compose ps
-        
-        # Testar
-        sleep 5
-        curl -I http://localhost:8080 || echo "⚠️ Servidor ainda não respondeu"
-        
-    - name: Verify Deployment
-      run: |
-        docker compose ps
-        docker compose logs --tail=50 portfolio
+    uses: silva-mateus/homelab-infra/.github/workflows/reusable-deploy.yml@main
+    with:
+      service_name: portfolio
+      dockerfile_path: ./Dockerfile
+      context: .
+    secrets: inherit
