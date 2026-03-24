@@ -6,6 +6,9 @@
 (function(window) {
     'use strict';
 
+    const API_BASE = window.location.port === '80' || window.location.port === ''
+        ? '' : `http://${window.location.hostname}:5000`;
+
     // ==================== GAME STATE ====================
     const gameState = {
         active: false,
@@ -16,7 +19,7 @@
         commandsExecuted: [],
         exploredProc: false,
         completed: false,
-        currentLang: 'pt',
+        currentLang: 'en',
         streaming: false
     };
 
@@ -997,48 +1000,6 @@ OLD_LOCATION=/opt/coffee/`
         gameState.filesRead.add(fullPath);
         output.push('');
         output.push(content);
-        
-        // Add discoveries
-        addDiscoveries(fullPath, output);
-        
-        // Show stats
-        const elapsed = Math.floor((Date.now() - gameState.startTime) / 1000);
-        output.push('');
-        output.push(`${formatTime(elapsed)}  |  ${gameState.filesRead.size} ${getText('filesInvestigated').toLowerCase()}`);
-    }
-
-    function addDiscoveries(fullPath, output) {
-        const discoveries = {
-            '/var/log/coffee.log': {
-                pt: '\nDESCOBERTA: Binário foi movido para /tmp/.cache/!',
-                en: '\nDISCOVERY: Binary was moved to /tmp/.cache/!',
-                es: '\nDESCUBRIMIENTO: ¡Binario fue movido a /tmp/.cache/!'
-            },
-            '/tmp/.cache/env.conf': {
-                pt: '\nDESCOBERTA: O script principal está em /usr/local/bin/!',
-                en: '\nDISCOVERY: The main script is at /usr/local/bin/!',
-                es: '\nDESCUBRIMIENTO: ¡El script principal está en /usr/local/bin/!'
-            },
-            '/etc/systemd/system/coffee.service': {
-                pt: '\nDESCOBERTA: O serviço usa /usr/local/bin/brew-coffee.sh!\n   Esse deve ser o script de inicialização!',
-                en: '\nDISCOVERY: The service uses /usr/local/bin/brew-coffee.sh!\n   This must be the initialization script!',
-                es: '\nDESCUBRIMIENTO: ¡El servicio usa /usr/local/bin/brew-coffee.sh!\n   ¡Este debe ser el script de inicialización!'
-            },
-            '/etc/environment': {
-                pt: '\nPISTA: COFFEE_SCRIPT_PATH aponta para /usr/local/bin/!',
-                en: '\nCLUE: COFFEE_SCRIPT_PATH points to /usr/local/bin/!',
-                es: '\nPISTA: ¡COFFEE_SCRIPT_PATH apunta a /usr/local/bin/!'
-            },
-            '/usr/local/bin/brew-coffee.sh': {
-                pt: '\nSCRIPT ENCONTRADO!\n   /usr/local/bin/brew-coffee.sh\n\nPara completar a missão, execute:\n  ./brew-coffee.sh',
-                en: '\nSCRIPT FOUND!\n   /usr/local/bin/brew-coffee.sh\n\nTo complete the mission, execute:\n  ./brew-coffee.sh',
-                es: '\nSCRIPT ENCONTRADO!\n   /usr/local/bin/brew-coffee.sh\n\nPara completar la misión, ejecuta:\n  ./brew-coffee.sh'
-            }
-        };
-        
-        if (discoveries[fullPath]) {
-            output.push(discoveries[fullPath][gameState.currentLang]);
-        }
     }
 
     function cmd_ps(args, output) {
@@ -1049,10 +1010,7 @@ OLD_LOCATION=/opt/coffee/`
             output.push('root       234     1  /usr/sbin/sshd');
             output.push('www        456     1  /usr/bin/nginx');
             output.push('dev        789     1  /bin/bash');
-            output.push('root      1337     1  [coffee-daemon] <defunct>  ⚠️');
-            output.push('');
-            output.push(`${getText('discovery')} ${getText('processDefunct')}`);
-            output.push('   Processo coffee-daemon (PID 1337) está defunct!');
+            output.push('root      1337     1  [coffee-daemon] <defunct>');
         } else {
             output.push('  PID TTY          TIME CMD');
             output.push('  789 pts/0    00:00:01 bash');
@@ -1295,12 +1253,17 @@ OLD_LOCATION=/opt/coffee/`
 
         const streamLines = [...scriptLines, ...summaryLines, ...output];
 
-        // Store game data for submission
+        const technicalCmdsUsed = ['ps', 'free', 'top', 'env', 'systemctl'];
+        const usedTechCmds = gameState.commandsExecuted.filter(cmd =>
+            technicalCmdsUsed.some(tech => cmd.startsWith(tech))
+        );
+
         window.coffeeMachineGameData = {
-            score: score,
             time: elapsed,
             filesRead: filesRead,
-            commandsUsed: commandsUsed
+            commandsUsed: commandsUsed,
+            exploredProc: gameState.exploredProc,
+            technicalCommands: usedTechCmds
         };
 
         gameState.streaming = true;
@@ -1319,17 +1282,18 @@ OLD_LOCATION=/opt/coffee/`
         const data = window.coffeeMachineGameData;
         
         try {
-            const response = await fetch('/api/coffeemachine/submit', {
+            const response = await fetch(`${API_BASE}/api/coffeemachine/submit`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
                     name: name,
-                    score: data.score,
                     time: data.time,
                     filesRead: data.filesRead,
-                    commandsUsed: data.commandsUsed
+                    commandsUsed: data.commandsUsed,
+                    exploredProc: data.exploredProc,
+                    technicalCommands: data.technicalCommands
                 })
             });
             
@@ -1348,7 +1312,7 @@ OLD_LOCATION=/opt/coffee/`
 
     async function getLeaderboard() {
         try {
-            const response = await fetch('/api/coffeemachine/leaderboard');
+            const response = await fetch(`${API_BASE}/api/coffeemachine/leaderboard`);
             const result = await response.json();
             
             if (result.success) {
@@ -1362,23 +1326,31 @@ OLD_LOCATION=/opt/coffee/`
 
     async function displayLeaderboard(output, playerName) {
         const leaderboard = await getLeaderboard();
-        
+
         output.push('');
-        output.push(getText('topHunters'));
-        output.push('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
-        
+        output.push('+=============================================+');
+        output.push('|        TOP 10 COFFEE DEBUGGERS              |');
+        output.push('+----+----------------+-------+------+--------+');
+        output.push('| ## | PLAYER         | SCORE | TIME | RANK   |');
+        output.push('+----+----------------+-------+------+--------+');
+
         if (leaderboard.length === 0) {
-            output.push(gameState.currentLang === 'pt' ? 'Nenhum registro ainda.' : gameState.currentLang === 'en' ? 'No records yet.' : 'Sin registros aún.');
+            output.push('|          No records yet.                    |');
         } else {
             leaderboard.forEach((entry, idx) => {
                 const badge = getRankBadge(entry.score);
                 const isPlayer = entry.name.toLowerCase() === playerName.toLowerCase();
-                const line = `${(idx + 1).toString().padStart(2, ' ')}. ${entry.name.padEnd(15)} ${entry.score.toLocaleString().padStart(7)}   ${formatTime(entry.time).padStart(5)}   ${badge.icon} ${badge.title}${isPlayer ? '     ' + getText('you') : ''}`;
-                output.push(line);
+                const num = (idx + 1).toString().padStart(2, ' ');
+                const name = entry.name.padEnd(14).substring(0, 14);
+                const score = entry.score.toLocaleString('en-US').padStart(5);
+                const time = formatTime(entry.time).padStart(4);
+                const rank = badge.icon.padEnd(6);
+                const marker = isPlayer ? ' ' + getText('you') : '';
+                output.push(`| ${num} | ${name} | ${score} | ${time} | ${rank} |${marker}`);
             });
         }
-        
-        output.push('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+
+        output.push('+----+----------------+-------+------+--------+');
         output.push('');
         output.push(getText('backToTerminal'));
         output.push(getText('playAgain'));

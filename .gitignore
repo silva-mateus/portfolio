@@ -33,5 +33,12 @@ __pycache__/
 *.egg-info/
 .pytest_cache/
 
-# Game data (não versionar scores)
+# C# build artifacts
+ApiServer/bin/
+ApiServer/obj/
+ApiServer.Tests/bin/
+ApiServer.Tests/obj/
+
+# Game data
 data/highscores.csv
+ApiServer/data/

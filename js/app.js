@@ -55,115 +55,73 @@
     const konamiSequence = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
     
     // Terminal commands
+    function getUptime() {
+        const start = new Date(2019, 10, 1);
+        const now = new Date();
+        let years = now.getFullYear() - start.getFullYear();
+        let months = now.getMonth() - start.getMonth();
+        if (months < 0) { years--; months += 12; }
+        return { years, months };
+    }
+
     const terminalCommands = {
-        help: {
-            pt: `
-Comandos disponíveis:
-  help        - Mostra esta ajuda
-  about       - Informações sobre mim
-  skills      - Lista minhas habilidades
-  contact     - Informações de contato
-  projects    - Projetos destacados
-  stats       - Estatísticas de produtividade
-  clear       - Limpa o terminal
-  matrix      - ???
-  coffee      - ☕
-            `,
-            en: `
+        help: `
 Available commands:
   help        - Shows this help
-  about       - Information about me
-  skills      - List my skills
-  contact     - Contact information
-  projects    - Featured projects
-  stats       - Productivity statistics
+  whoami      - Display current user identity
+  env         - Print environment variables
+  neofetch    - System information
+  uptime      - Show system uptime
+  leaderboard - Show ranking
   clear       - Clears terminal
-  matrix      - ???
-  coffee      - ☕
+  play        - Start Coffee Machine Debugger
             `,
-            es: `
-Comandos disponibles:
-  help        - Muestra esta ayuda
-  about       - Información sobre mí
-  skills      - Lista mis habilidades
-  contact     - Información de contacto
-  projects    - Proyectos destacados
-  stats       - Estadísticas de productividad
-  clear       - Limpia el terminal
-  matrix      - ???
-  coffee      - ☕
-            `
+        whoami: `mateus.silva
+
+Login:    mateus.silva
+Name:     Mateus Morais Silva
+Role:     Software Development Engineer II
+Email:    thi.hero2012@gmail.com
+LinkedIn: linkedin.com/in/mhassilvamat/
+GitHub:   github.com/silva-mateus`,
+        env: `USER=mateus.silva
+ROLE=software_development_engineer_ii
+PRODUCT=ascendon
+SHELL=/bin/bash
+EDITOR=code
+LANG=en_US.UTF-8
+DOTNET_ROOT=/usr/share/dotnet
+ASPNETCORE_ENVIRONMENT=Production
+AWS_DEFAULT_REGION=us-east-1
+DOCKER_HOST=unix:///var/run/docker.sock
+GIT_AUTHOR_NAME=Mateus Silva
+GIT_AUTHOR_EMAIL=thi.hero2012@gmail.com
+STACK=csharp,dotnet,aspnetcore,sql_server,postgresql
+LANGUAGES=csharp,python,cpp,sql
+CLOUD=aws
+TOOLS=docker,git,linux,ci_cd,terraform,xunit`,
+        neofetch: function() {
+            const { years, months } = getUptime();
+            return `    ┌──────────────────┐     mateus@portfolio
+    │  $ _             │     ──────────────────
+    │                  │     Role: SDE II @ CSG
+    │  sde ii          │     Uptime: ${years} years, ${months} months
+    │                  │     OS: Linux
+    └──────────────────┘     Shell: bash
+    ───────────────────      Packages: dotnet, python3, awscli, docker, git
+         ┌──────┐            IDE: VSCode
+         └──────┘            Product: Ascendon`;
         },
-        about: {
-            pt: 'Backend Engineer com 6+ anos de experiência em sistemas de billing, Python, SQL, C++, AWS. Apaixonado por resolver problemas complexos e automação.',
-            en: 'Backend Engineer with 6+ years of experience in billing systems, Python, SQL, C++, AWS. Passionate about solving complex problems and automation.',
-            es: 'Backend Engineer con 6+ años de experiencia en sistemas de facturación, Python, SQL, C++, AWS. Apasionado por resolver problemas complejos y automatización.'
+        uptime: function() {
+            const { years, months } = getUptime();
+            const now = new Date();
+            const time = now.toTimeString().split(' ')[0];
+            const l1 = (0.5 + Math.random() * 0.5).toFixed(2);
+            const l2 = (0.5 + Math.random() * 0.5).toFixed(2);
+            const l3 = (0.5 + Math.random() * 0.5).toFixed(2);
+            return ` ${time} up ${years} years, ${months} months, 1 user, load average: ${l1}, ${l2}, ${l3}`;
         },
-        skills: {
-            pt: 'Python | C++ | SQL | AWS | Linux | Git | Docker | CI/CD | Data Analysis | Billing Systems',
-            en: 'Python | C++ | SQL | AWS | Linux | Git | Docker | CI/CD | Data Analysis | Billing Systems',
-            es: 'Python | C++ | SQL | AWS | Linux | Git | Docker | CI/CD | Análisis de Datos | Sistemas de Facturación'
-        },
-        contact: {
-            pt: 'Email: thi.hero2012@gmail.com | LinkedIn: linkedin.com/in/mhassilvamat/ | GitHub: github.com/silva-mateus',
-            en: 'Email: thi.hero2012@gmail.com | LinkedIn: linkedin.com/in/mhassilvamat/ | GitHub: github.com/silva-mateus',
-            es: 'Email: thi.hero2012@gmail.com | LinkedIn: linkedin.com/in/mhassilvamat/ | GitHub: github.com/silva-mateus'
-        },
-        projects: {
-            pt: '1. Otimização de Sistemas de Billing Legacy (redução 80% erros)\n2. Pipelines de Análise de Dados em Produção\n3. Infraestrutura Cloud e Automação',
-            en: '1. Legacy Billing Systems Optimization (80% error reduction)\n2. Production Data Analysis Pipelines\n3. Cloud Infrastructure and Automation',
-            es: '1. Optimización de Sistemas de Facturación Legacy (reducción 80% errores)\n2. Pipelines de Análisis de Datos en Producción\n3. Infraestructura Cloud y Automatización'
-        },
-        clear: '',
-        matrix: '🟩 Wake up, Neo... The Matrix has you... 🟩',
-        coffee: '☕ Brewing coffee... Backend engineers run on caffeine! ☕',
-        stats: {
-            pt: `
-📊 Estatísticas de Produtividade:
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  Linhas de Código:        2,500+
-  Café Consumido:          ☕☕☕☕☕ (infinito)
-  Bugs Corrigidos:         ∞
-  Features Entregues:      42
-  Stack Overflow:          999+ visitas
-  Qualidade do Código:     9.5/10
-  Commits:                 1,337
-  Pull Requests:           256
-  Code Reviews:            512
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-💡 "Code is poetry, bugs are typos"
-            `,
-            en: `
-📊 Productivity Statistics:
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  Lines of Code:           2,500+
-  Coffee Consumed:         ☕☕☕☕☕ (infinite)
-  Bugs Fixed:              ∞
-  Features Shipped:        42
-  Stack Overflow:          999+ visits
-  Code Quality:            9.5/10
-  Commits:                 1,337
-  Pull Requests:           256
-  Code Reviews:            512
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-💡 "Code is poetry, bugs are typos"
-            `,
-            es: `
-📊 Estadísticas de Productividad:
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  Líneas de Código:        2,500+
-  Café Consumido:          ☕☕☕☕☕ (infinito)
-  Bugs Corregidos:         ∞
-  Features Entregados:     42
-  Stack Overflow:          999+ visitas
-  Calidad del Código:      9.5/10
-  Commits:                 1,337
-  Pull Requests:           256
-  Code Reviews:            512
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-💡 "El código es poesía, los bugs son erratas"
-            `
-        }
+        clear: ''
     };
 
     // ==================== INITIALIZATION ====================
@@ -207,7 +165,7 @@ Comandos disponibles:
             })
             .catch(error => {
                 console.error('Error loading content:', error);
-                document.body.innerHTML = '<div style="padding: 2rem; text-align: center; font-family: monospace; color: #00ff88; background: #0a0a0f; min-height: 100vh; display: flex; align-items: center; justify-content: center;"><div><h1 style="color: #00ffff;">⚠️ Error Loading Portfolio</h1><p>Please use a local server (HTTP) to view this portfolio.</p><p>Run: <code style="background: #1a1a2e; padding: 0.5rem; border-radius: 4px;">python -m http.server 8000</code></p><p>Or use: <code style="background: #1a1a2e; padding: 0.5rem; border-radius: 4px;">start-server.bat</code></p></div></div>';
+                document.body.innerHTML = '<div style="padding: 2rem; text-align: center; font-family: monospace; color: #00ff88; background: #0a0a0f; min-height: 100vh; display: flex; align-items: center; justify-content: center;"><div><h1 style="color: #00ffff;">⚠️ Error Loading Portfolio</h1><p>Please use a local server (HTTP) to view this portfolio.</p><p>Run: <code style="background: #1a1a2e; padding: 0.5rem; border-radius: 4px;">python -m http.server 8000</code></p><p>Or use: <code style="background: #1a1a2e; padding: 0.5rem; border-radius: 4px;">.\\start-dev.ps1</code></p></div></div>';
             });
     }
 
@@ -1089,37 +1047,278 @@ Comandos disponibles:
         document.getElementById('terminal-console').classList.remove('active');
     }
 
+    function updateTerminalPrompt() {
+        const promptEl = document.querySelector('.terminal-prompt');
+        const terminal = document.getElementById('terminal-console');
+        
+        if (!promptEl || !terminal) return;
+        
+        if (window.CoffeeMachineDebug && window.CoffeeMachineDebug.isStreaming && window.CoffeeMachineDebug.isStreaming()) {
+            terminal.classList.add('terminal-streaming');
+            terminal.classList.remove('terminal-name-input');
+            return;
+        }
+        
+        terminal.classList.remove('terminal-streaming');
+        
+        if (window.CoffeeMachineDebug && window.CoffeeMachineDebug.isAwaitingName && window.CoffeeMachineDebug.isAwaitingName()) {
+            terminal.classList.add('terminal-name-input');
+            promptEl.textContent = '';
+            const terminalInput = document.getElementById('terminal-input');
+            if (terminalInput) {
+                setTimeout(() => terminalInput.focus(), 0);
+            }
+            return;
+        }
+        
+        terminal.classList.remove('terminal-name-input');
+        
+        if (window.CoffeeMachineDebug && window.CoffeeMachineDebug.isActive && window.CoffeeMachineDebug.isActive()) {
+            const currentPath = window.CoffeeMachineDebug.getCurrentPath();
+            promptEl.textContent = `dev@coffee-machine:${currentPath}$`;
+            return;
+        }
+        
+        promptEl.textContent = 'mateus@portfolio:~$';
+    }
+
     function executeTerminalCommand(command) {
         const output = document.getElementById('terminal-output');
         const terminal = document.getElementById('terminal-console');
         const cmd = command.toLowerCase();
+        updateTerminalPrompt();
+        
+        if (window.CoffeeMachineDebug && window.CoffeeMachineDebug.isAwaitingName()) {
+            const lowered = command.trim().toLowerCase();
+            if (lowered === 'menu') {
+                window.CoffeeMachineDebug.reset();
+                window.coffeeMachineAwaitingName = false;
+                
+                const responseLine = document.createElement('div');
+                responseLine.style.whiteSpace = 'pre-wrap';
+                responseLine.style.marginBottom = '0.5rem';
+                responseLine.textContent = '\nReturning to normal terminal...\n';
+                output.appendChild(responseLine);
+                
+                document.querySelector('.terminal-body').scrollTop = document.querySelector('.terminal-body').scrollHeight;
+                updateTerminalPrompt();
+                return;
+            }
+            
+            if (lowered === 'play') {
+                window.CoffeeMachineDebug.reset();
+                window.coffeeMachineAwaitingName = false;
+                
+                const gameIntro = window.CoffeeMachineDebug.start('en');
+                const responseLine = document.createElement('div');
+                responseLine.style.whiteSpace = 'pre-wrap';
+                responseLine.style.marginBottom = '0.5rem';
+                responseLine.textContent = gameIntro;
+                output.appendChild(responseLine);
+                
+                document.querySelector('.terminal-body').scrollTop = document.querySelector('.terminal-body').scrollHeight;
+                updateTerminalPrompt();
+                return;
+            }
+
+            if (lowered === 'exit') {
+                window.CoffeeMachineDebug.reset();
+                window.coffeeMachineAwaitingName = false;
+                
+                const responseLine = document.createElement('div');
+                responseLine.style.whiteSpace = 'pre-wrap';
+                responseLine.style.marginBottom = '0.5rem';
+                responseLine.textContent = '\nConnection closed. Returning to normal terminal...\n';
+                output.appendChild(responseLine);
+                
+                document.querySelector('.terminal-body').scrollTop = document.querySelector('.terminal-body').scrollHeight;
+                updateTerminalPrompt();
+                return;
+            }
+
+            const reservedNames = new Set([
+                'play', 'menu', 'exit', 'help', 'ls', 'cd', 'cat', 'pwd',
+                'ps', 'ps -ef', 'ps aux', 'free', 'free -h', 'top',
+                'env', 'printenv', 'grep', 'find', 'systemctl',
+                './brew-coffee.sh', 'brew-coffee.sh'
+            ]);
+            if (reservedNames.has(lowered) || lowered === '') {
+                const responseLine = document.createElement('div');
+                responseLine.style.whiteSpace = 'pre-wrap';
+                responseLine.style.marginBottom = '0.5rem';
+                responseLine.textContent = 'Error: invalid name. Please enter only your name.';
+                output.appendChild(responseLine);
+                updateTerminalPrompt();
+                return;
+            }
+
+            const inputLine = document.createElement('div');
+            inputLine.textContent = `> ${command}`;
+            output.appendChild(inputLine);
+
+            window.CoffeeMachineDebug.submitScore(command).then(result => {
+                const responseLine = document.createElement('div');
+                responseLine.style.whiteSpace = 'pre-wrap';
+                responseLine.style.marginBottom = '0.5rem';
+                
+                if (result.success) {
+                    responseLine.textContent = `\nSaving to ranking...\n\nRANKING POSITION: #${result.rank}\n`;
+                    
+                    output.appendChild(responseLine);
+                    
+                    const leaderboardOutput = [];
+                    window.CoffeeMachineDebug.displayLeaderboard(leaderboardOutput, command).then(() => {
+                        const leaderboardLine = document.createElement('div');
+                        leaderboardLine.style.whiteSpace = 'pre-wrap';
+                        leaderboardLine.textContent = leaderboardOutput.join('\n');
+                        output.appendChild(leaderboardLine);
+                        
+                        document.querySelector('.terminal-body').scrollTop = document.querySelector('.terminal-body').scrollHeight;
+                    });
+                } else {
+                    responseLine.textContent = `\nError: ${result.error}\n`;
+                    output.appendChild(responseLine);
+                }
+                
+                document.querySelector('.terminal-body').scrollTop = document.querySelector('.terminal-body').scrollHeight;
+                window.coffeeMachineAwaitingName = false;
+                updateTerminalPrompt();
+            });
+            
+            return;
+        }
+
+        if (window.CoffeeMachineDebug && window.CoffeeMachineDebug.isStreaming && window.CoffeeMachineDebug.isStreaming()) {
+            const responseLine = document.createElement('div');
+            responseLine.style.whiteSpace = 'pre-wrap';
+            responseLine.style.marginBottom = '0.5rem';
+            responseLine.textContent = 'Please wait for the process to finish...';
+            output.appendChild(responseLine);
+            document.querySelector('.terminal-body').scrollTop = document.querySelector('.terminal-body').scrollHeight;
+            updateTerminalPrompt();
+            return;
+        }
+        
+        if (window.CoffeeMachineDebug && window.CoffeeMachineDebug.isActive()) {
+            const currentPath = window.CoffeeMachineDebug.getCurrentPath();
+            const isScriptCommand = cmd.startsWith('./') || cmd.endsWith('.sh') || cmd === 'brew-coffee.sh';
+            if (!isScriptCommand) {
+                const commandLine = document.createElement('div');
+                const gamePrompt = document.createElement('span');
+                gamePrompt.style.color = '#00ffff';
+                gamePrompt.textContent = `dev@coffee-machine:${currentPath}$`;
+                commandLine.appendChild(gamePrompt);
+                commandLine.appendChild(document.createTextNode(` ${command}`));
+                output.appendChild(commandLine);
+            }
+            
+            const gameOutput = [];
+            const result = window.CoffeeMachineDebug.execute(command, gameOutput);
+            
+            if (result === 'menu' || cmd === 'exit') {
+                const responseLine = document.createElement('div');
+                responseLine.style.whiteSpace = 'pre-wrap';
+                responseLine.style.marginBottom = '0.5rem';
+                responseLine.textContent = cmd === 'exit'
+                    ? '\nConnection closed. Returning to normal terminal...\n'
+                    : '\nReturning to normal terminal...\n';
+                output.appendChild(responseLine);
+                window.CoffeeMachineDebug.reset();
+                updateTerminalPrompt();
+            } else if (result && result.stream) {
+                const delayMs = 450;
+                let index = 0;
+                const streamLine = document.createElement('div');
+                streamLine.style.whiteSpace = 'pre-wrap';
+                streamLine.style.marginBottom = '0.5rem';
+                output.appendChild(streamLine);
+                updateTerminalPrompt();
+                
+                const lines = result.lines || [];
+                const interval = setInterval(() => {
+                    if (index < lines.length) {
+                        streamLine.textContent += (index === 0 ? '' : '\n') + lines[index];
+                        index++;
+                        document.querySelector('.terminal-body').scrollTop = document.querySelector('.terminal-body').scrollHeight;
+                    } else {
+                        clearInterval(interval);
+                        if (result.onDone) result.onDone();
+                        updateTerminalPrompt();
+                    }
+                }, delayMs);
+            } else if (gameOutput.length > 0) {
+                const responseLine = document.createElement('div');
+                responseLine.style.whiteSpace = 'pre-wrap';
+                responseLine.style.marginBottom = '0.5rem';
+                responseLine.textContent = gameOutput.join('\n');
+                output.appendChild(responseLine);
+            }
+            
+            document.querySelector('.terminal-body').scrollTop = document.querySelector('.terminal-body').scrollHeight;
+            updateTerminalPrompt();
+            return;
+        }
         
         // Add command to output
         const commandLine = document.createElement('div');
-        commandLine.innerHTML = `<span style="color: #00ffff;">mateus@portfolio:~$</span> ${command}`;
+        const termPrompt = document.createElement('span');
+        termPrompt.style.color = '#00ffff';
+        termPrompt.textContent = 'mateus@portfolio:~$';
+        commandLine.appendChild(termPrompt);
+        commandLine.appendChild(document.createTextNode(` ${command}`));
         output.appendChild(commandLine);
+        
+        if (cmd === 'leaderboard') {
+            const responseLine = document.createElement('div');
+            responseLine.style.whiteSpace = 'pre-wrap';
+            responseLine.style.marginBottom = '0.5rem';
+            responseLine.textContent = 'Fetching leaderboard...';
+            output.appendChild(responseLine);
+
+            window.CoffeeMachineDebug.displayLeaderboard([], '').then(() => {
+                const leaderboardOutput = [];
+                window.CoffeeMachineDebug.displayLeaderboard(leaderboardOutput, '').then(() => {
+                    const leaderboardLine = document.createElement('div');
+                    leaderboardLine.style.whiteSpace = 'pre-wrap';
+                    leaderboardLine.textContent = leaderboardOutput.join('\n');
+                    output.appendChild(leaderboardLine);
+                    document.querySelector('.terminal-body').scrollTop = document.querySelector('.terminal-body').scrollHeight;
+                    updateTerminalPrompt();
+                });
+            });
+            return;
+        }
+
+        if (cmd === 'play') {
+            const gameIntro = window.CoffeeMachineDebug.start('en');
+            const responseLine = document.createElement('div');
+            responseLine.style.whiteSpace = 'pre-wrap';
+            responseLine.style.marginBottom = '0.5rem';
+            responseLine.textContent = gameIntro;
+            output.appendChild(responseLine);
+            updateTerminalPrompt();
+            
+            document.querySelector('.terminal-body').scrollTop = document.querySelector('.terminal-body').scrollHeight;
+            return;
+        }
         
         // Execute command
         let response = '';
         let isError = false;
         
-        if (terminalCommands[cmd]) {
+        if (terminalCommands[cmd] !== undefined) {
             if (cmd === 'clear') {
                 output.innerHTML = '';
                 return;
             }
-            response = typeof terminalCommands[cmd] === 'object' 
-                ? terminalCommands[cmd][currentLang] 
+            response = typeof terminalCommands[cmd] === 'function'
+                ? terminalCommands[cmd]()
                 : terminalCommands[cmd];
         } else if (cmd === '') {
             return;
         } else {
             isError = true;
-            response = currentLang === 'pt' 
-                ? `Comando não encontrado: ${command}. Digite 'help' para ver comandos disponíveis.`
-                : currentLang === 'en'
-                ? `Command not found: ${command}. Type 'help' to see available commands.`
-                : `Comando no encontrado: ${command}. Escribe 'help' para ver comandos disponibles.`;
+            response = `Command not found: ${command}. Type 'help' to see available commands.`;
             
             // Shake effect on error
             terminal.classList.add('shake');
@@ -1139,6 +1338,7 @@ Comandos disponibles:
         
         // Scroll to bottom
         document.querySelector('.terminal-body').scrollTop = document.querySelector('.terminal-body').scrollHeight;
+        updateTerminalPrompt();
     }
 
     function activateMatrixMode() {

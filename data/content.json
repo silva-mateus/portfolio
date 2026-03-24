@@ -72,24 +72,24 @@
     "pt": {
       "greeting": "Olá, eu sou",
       "name": "Mateus Silva",
-      "title": "Engenheiro Backend • Cloud • Dados",
-      "description": "Business System Analyst Lead com forte atuação em backend, análise de dados e sistemas de billing. Experiência em ambientes de produção complexos, liderança técnica e resolução de problemas de alto impacto.",
+      "title": "Software Developer • BSS • Cloud",
+      "description": "Software Development Engineer II na CSG International, atuando na plataforma BSS Ascendon. Mais de 6 anos de experiência em soluções BSS para operadoras de telecomunicações, com background sólido em billing, análise de dados, operações de produção e desenvolvimento de software.",
       "cta_primary": "Entre em Contato",
       "cta_secondary": "Ver Projetos"
     },
     "en": {
       "greeting": "Hello, I am",
       "name": "Mateus Silva",
-      "title": "Backend Engineer • Cloud • Data",
-      "description": "Business System Analyst Lead with strong expertise in backend development, data analysis, and billing systems. Experienced in complex production environments, technical leadership, and high-impact problem solving.",
+      "title": "Software Developer • BSS • Cloud",
+      "description": "Software Development Engineer II at CSG International, working on the Ascendon BSS platform. Over 6 years of experience in BSS solutions for telecom operators, with a strong background in billing, data analysis, production operations, and software development.",
       "cta_primary": "Get in Touch",
       "cta_secondary": "View Projects"
     },
     "es": {
       "greeting": "Hola, soy",
       "name": "Mateus Silva",
-      "title": "Ingeniero Backend • Cloud • Datos",
-      "description": "Business System Analyst Lead con fuerte experiencia en backend, análisis de datos y sistemas de facturación. Experiencia en entornos de producción complejos, liderazgo técnico y resolución de problemas de alto impacto.",
+      "title": "Software Developer • BSS • Cloud",
+      "description": "Software Development Engineer II en CSG International, trabajando en la plataforma BSS Ascendon. Más de 6 años de experiencia en soluciones BSS para operadoras de telecomunicaciones, con sólido background en facturación, análisis de datos, operaciones de producción y desarrollo de software.",
       "cta_primary": "Contáctame",
       "cta_secondary": "Ver Proyectos"
     }
@@ -98,8 +98,8 @@
     "pt": {
       "title": "Sobre Mim",
       "paragraphs": [
-        "Sou Business System Analyst Lead com mais de 6 anos de experiência atuando em sistemas corporativos de grande escala, com foco em billing, análise de dados e operações críticas. Sou responsável por liderar times, tomar decisões técnicas em incidentes de produção e garantir a excelência operacional dos sistemas sob minha responsabilidade.",
-        "Tenho forte background em resolução de problemas, uso de ferramentas de automação, análise de dados e arquitetura de sistemas, sempre conectando decisões técnicas às necessidades do negócio. Além do trabalho corporativo, sou entusiasta de tecnologia, automação e IA, com projetos práticos como construção e automação de homelab."
+        "Sou Software Development Engineer II na CSG International, atuando na plataforma BSS Ascendon. Com mais de 6 anos de experiência em soluções BSS para operadoras de telecomunicações e empresas de serviços digitais, minha trajetória inclui desenvolvimento de software, análise de dados, operações de billing e liderança de equipe. Atualmente focado em desenvolvimento com C#, .NET e ASP.NET Core.",
+        "Meu background em billing e operações de produção me dá uma perspectiva única como desenvolvedor — entendo tanto o lado técnico quanto as necessidades do negócio. Além do trabalho corporativo, sou entusiasta de tecnologia, automação e IA, com projetos práticos como construção e automação de homelab."
       ],
       "stats": [
         {
@@ -119,8 +119,8 @@
     "en": {
       "title": "About Me",
       "paragraphs": [
-        "I am a Business System Analyst Lead with over 6 years of experience working on large-scale enterprise systems, focused on billing platforms, data analysis, and critical operations. I currently work as a Billing Systems Analyst Lead, responsible for team leadership, technical decision-making during production incidents, and ensuring operational excellence.",
-        "I have a strong background in problem solving, use of automation tools, data analysis, and system architecture, always aligning technical decisions with business needs. Outside corporate work, I am passionate about technology, automation, and AI, with hands-on projects such as building and automating my own homelab."
+        "I am a Software Development Engineer II at CSG International, working on the Ascendon BSS platform. With over 6 years of experience in BSS solutions for telecom operators and digital service companies, my career path includes software development, data analysis, billing operations, and team leadership. Currently focused on development with C#, .NET, and ASP.NET Core.",
+        "My background in billing and production operations gives me a unique perspective as a developer — I understand both the technical side and business needs. Outside corporate work, I am passionate about technology, automation, and AI, with hands-on projects such as building and automating my own homelab."
       ],
       "stats": [
         {
@@ -140,8 +140,8 @@
     "es": {
       "title": "Sobre Mí",
       "paragraphs": [
-        "Soy Business System Analyst Lead con más de 6 años de experiencia trabajando en sistemas corporativos de gran escala, enfocado en facturación, análisis de datos y operaciones críticas. Soy responsable de liderar equipos, tomar decisiones técnicas en incidentes de producción y garantizar la excelencia operacional de los sistemas bajo mi responsabilidad.",
-        "Tengo un fuerte background en resolución de problemas, uso de herramientas de automatización, análisis de datos y arquitectura de sistemas, siempre conectando decisiones técnicas con las necesidades del negocio. Además del trabajo corporativo, soy entusiasta de la tecnología, automatización e IA, con proyectos prácticos como construcción y automatización de homelab."
+        "Soy Software Development Engineer II en CSG International, trabajando en la plataforma BSS Ascendon. Con más de 6 años de experiencia en soluciones BSS para operadoras de telecomunicaciones y empresas de servicios digitales, mi trayectoria incluye desarrollo de software, análisis de datos, operaciones de facturación y liderazgo de equipo. Actualmente enfocado en desarrollo con C#, .NET y ASP.NET Core.",
+        "Mi background en facturación y operaciones de producción me da una perspectiva única como desarrollador — entiendo tanto el lado técnico como las necesidades del negocio. Además del trabajo corporativo, soy entusiasta de la tecnología, automatización e IA, con proyectos prácticos como construcción y automatización de homelab."
       ],
       "stats": [
         {
@@ -167,24 +167,28 @@
           "title": "Backend & Linguagens",
           "items": [
             {
+              "name": "C# / .NET",
+              "level": 70
+            },
+            {
+              "name": "ASP.NET Core",
+              "level": 65
+            },
+            {
               "name": "Python",
               "level": 95
             },
             {
-              "name": "C / C++ / C#",
+              "name": "C / C++",
               "level": 85
             },
             {
-              "name": "POO",
-              "level": 90
+              "name": "xUnit",
+              "level": 60
             },
             {
               "name": "Javascript / Node.js",
               "level": 65
-            },
-            {
-              "name": ".NET",
-              "level": 30
             }
           ]
         },
@@ -217,7 +221,7 @@
           "title": "Dados & Bancos",
           "items": [
             {
-              "name": "SQL (MySQL, SQLite)",
+              "name": "SQL (SQL Server, PostgreSQL, MySQL)",
               "level": 95
             },
             {
@@ -289,24 +293,28 @@
           "title": "Backend & Languages",
           "items": [
             {
+              "name": "C# / .NET",
+              "level": 70
+            },
+            {
+              "name": "ASP.NET Core",
+              "level": 65
+            },
+            {
               "name": "Python",
               "level": 95
             },
             {
-              "name": "C / C++ / C#",
+              "name": "C / C++",
               "level": 85
             },
             {
-              "name": "OOP",
-              "level": 90
+              "name": "xUnit",
+              "level": 60
             },
             {
               "name": "Javascript / Node.js",
               "level": 70
-            },
-            {
-              "name": ".NET",
-              "level": 60
             }
           ]
         },
@@ -339,7 +347,7 @@
           "title": "Data & Databases",
           "items": [
             {
-              "name": "SQL (MySQL, SQLite)",
+              "name": "SQL (SQL Server, PostgreSQL, MySQL)",
               "level": 95
             },
             {
@@ -411,24 +419,28 @@
           "title": "Backend & Lenguajes",
           "items": [
             {
+              "name": "C# / .NET",
+              "level": 70
+            },
+            {
+              "name": "ASP.NET Core",
+              "level": 65
+            },
+            {
               "name": "Python",
               "level": 95
             },
             {
-              "name": "C / C++ / C#",
+              "name": "C / C++",
               "level": 85
             },
             {
-              "name": "POO",
-              "level": 90
+              "name": "xUnit",
+              "level": 60
             },
             {
               "name": "Javascript / Node.js",
               "level": 70
-            },
-            {
-              "name": ".NET",
-              "level": 60
             }
           ]
         },
@@ -461,7 +473,7 @@
           "title": "Datos & Bases de Datos",
           "items": [
             {
-              "name": "SQL (MySQL, SQLite)",
+              "name": "SQL (SQL Server, PostgreSQL, MySQL)",
               "level": 95
             },
             {
@@ -532,7 +544,26 @@
       "title": "Experiência Profissional",
       "items": [
         {
-          "date": "Jul 2025 - Presente",
+          "date": "Abr 2026 - Presente",
+          "title": "Software Development Engineer II",
+          "company": "CSG International",
+          "description": [
+            "Design, desenvolvimento e manutenção das aplicações da plataforma BSS Ascendon",
+            "Construção de sistemas altamente disponíveis, escaláveis e resilientes com C#, .NET e ASP.NET Core",
+            "Participação em fluxos Agile, code reviews e procedimentos de qualidade",
+            "Suporte à plataforma em ambientes de clientes, incluindo troubleshooting e monitoramento"
+          ],
+          "tags": [
+            "C#",
+            ".NET",
+            "ASP.NET Core",
+            "SQL Server",
+            "AWS",
+            "Agile"
+          ]
+        },
+        {
+          "date": "Jul 2025 - Abr 2026",
           "title": "Billing Systems Analyst Lead",
           "company": "CSG International",
           "description": [
@@ -609,7 +640,26 @@
       "title": "Professional Experience",
       "items": [
         {
-          "date": "Jul 2025 - Present",
+          "date": "Apr 2026 - Present",
+          "title": "Software Development Engineer II",
+          "company": "CSG International",
+          "description": [
+            "Design, develop, and maintain CSG's Ascendon BSS platform applications",
+            "Build highly available, scalable, and resilient systems using C#, .NET, and ASP.NET Core",
+            "Participate in Agile workflows, code reviews, and quality procedures",
+            "Support the platform in customer-facing environments, including troubleshooting and monitoring"
+          ],
+          "tags": [
+            "C#",
+            ".NET",
+            "ASP.NET Core",
+            "SQL Server",
+            "AWS",
+            "Agile"
+          ]
+        },
+        {
+          "date": "Jul 2025 - Apr 2026",
           "title": "Billing Systems Analyst Lead",
           "company": "CSG International",
           "description": [
@@ -686,7 +736,26 @@
       "title": "Experiencia Profesional",
       "items": [
         {
-          "date": "Jul 2025 - Presente",
+          "date": "Abr 2026 - Presente",
+          "title": "Software Development Engineer II",
+          "company": "CSG International",
+          "description": [
+            "Diseño, desarrollo y mantenimiento de las aplicaciones de la plataforma BSS Ascendon",
+            "Construcción de sistemas altamente disponibles, escalables y resilientes con C#, .NET y ASP.NET Core",
+            "Participación en flujos Agile, code reviews y procedimientos de calidad",
+            "Soporte a la plataforma en ambientes de clientes, incluyendo troubleshooting y monitoreo"
+          ],
+          "tags": [
+            "C#",
+            ".NET",
+            "ASP.NET Core",
+            "SQL Server",
+            "AWS",
+            "Agile"
+          ]
+        },
+        {
+          "date": "Jul 2025 - Abr 2026",
           "title": "Billing Systems Analyst Lead",
           "company": "CSG International",
           "description": [

@@ -1,53 +1,37 @@
 # Terminal Portfolio - Mateus Silva
 
-Backend engineer portfolio with an interactive terminal theme.
-There is a hidden terminal easter egg for curious visitors who want to explore and play.
+Software developer portfolio with an interactive terminal theme and a hidden investigation game.
 
-📄 **View the Portifolio:**  
-You can view the portifolio online here:  
-[https://resume.networkmat.uk/](https://resume.networkmat.uk/)
+**Live:** [https://resume.networkmat.uk/](https://resume.networkmat.uk/)
 
-## Local Setup
+## Tech Stack
 
-### Frontend (static)
+- **Frontend:** Vanilla JS, CSS, HTML
+- **Backend:** C# / .NET 9 Minimal API (leaderboard)
+- **Infra:** Docker, Nginx, GitHub Actions
 
-Option 1: Python
-```bash
-python -m http.server 8000
-# http://localhost:8000
+## Local Development
+
+Requires Python 3 and .NET 9 SDK.
+
+```powershell
+.\start-dev.ps1
+# Frontend: http://localhost:8000
+# API:      http://localhost:5000
 ```
 
-Option 2: Node.js
-```bash
-npx http-server -p 8000
-# http://localhost:8000
-```
-
-Option 3: Windows script
-```bash
-start-server.bat
-```
-
-### API server
-
-Requires .NET 9 SDK or newer.
-
-```bash
-start-api-server.bat
-# API: http://localhost:5000
-```
-
-### Docker
+## Docker
 
 ```bash
 docker-compose up -d --build
 # http://localhost:8080
 ```
 
-## Repository Notes
+## Tests
 
-- This repository is public for cloning and personal use.
-- No external contributions are accepted at this time.
+```bash
+dotnet test ApiServer.Tests
+```
 
 ## License
 

@@ -1,15 +1,34 @@
+using System.Collections.Concurrent;
 using System.Net;
 using System.Net.Mail;
 using System.Text;
 using System.Text.Json.Serialization;
+using System.Text.RegularExpressions;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.ConfigureHttpJsonOptions(options =>
 {
     options.SerializerOptions.NumberHandling = JsonNumberHandling.AllowReadingFromString;
 });
+builder.Services.AddCors();
 
 var app = builder.Build();
+
+if (app.Environment.IsDevelopment())
+{
+    app.UseCors(policy => policy
+        .AllowAnyOrigin()
+        .AllowAnyMethod()
+        .AllowAnyHeader());
+}
+else
+{
+    var allowedOrigins = Environment.GetEnvironmentVariable("CORS_ORIGINS")?.Split(',') ?? [];
+    app.UseCors(policy => policy
+        .WithOrigins(allowedOrigins)
+        .AllowAnyMethod()
+        .AllowAnyHeader());
+}
 
 app.MapGet("/api/coffeemachine/leaderboard", () =>
 {
@@ -30,11 +49,19 @@ app.MapGet("/api/coffeemachine/leaderboard", () =>
     return Results.Ok(new { success = true, leaderboard });
 });
 
-app.MapPost("/api/coffeemachine/submit", (SubmitScoreRequest request) =>
+app.MapPost("/api/coffeemachine/submit", (HttpContext ctx, SubmitScoreRequest request) =>
 {
     if (request is null)
     {
         return Results.BadRequest(new { success = false, error = "Invalid JSON body" });
+    }
+
+    var ip = ctx.Connection.RemoteIpAddress?.ToString() ?? "unknown";
+    if (!RateLimiter.TryAcquire(ip))
+    {
+        return Results.Json(
+            new { success = false, error = "Too many requests. Try again later." },
+            statusCode: 429);
     }
 
     var name = request.Name?.Trim() ?? string.Empty;
@@ -43,79 +70,94 @@ app.MapPost("/api/coffeemachine/submit", (SubmitScoreRequest request) =>
         return Results.BadRequest(new { success = false, error = "Invalid name (must be 1-50 characters)" });
     }
 
+    if (!NameValidator.IsValid(name))
+    {
+        return Results.BadRequest(new { success = false, error = "Name contains invalid characters" });
+    }
+
     if (!request.TryValidate(out var errorMessage))
     {
         return Results.BadRequest(new { success = false, error = errorMessage });
     }
 
-    var scores = HighscoreStore.Read();
-    var previousSnapshot = scores
-        .Select(score => (score.Name.ToLowerInvariant(), score.Score, score.Time))
-        .ToList();
-
-    var newScore = new ScoreEntry(
-        name,
-        request.Score,
+    var calculatedScore = ScoreCalculator.Calculate(
         request.Time,
         request.FilesRead,
         request.CommandsUsed,
-        DateTime.Now.ToString("o"));
+        request.ExploredProc,
+        request.TechnicalCommands);
 
-    var existingIndex = scores.FindIndex(score => score.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
-    string action;
-
-    if (existingIndex >= 0)
+    lock (HighscoreStore.FileLock)
     {
-        if (newScore.Score > scores[existingIndex].Score)
+        var scores = HighscoreStore.Read();
+        var previousSnapshot = scores
+            .Select(score => (score.Name.ToLowerInvariant(), score.Score, score.Time))
+            .ToList();
+
+        var newScore = new ScoreEntry(
+            name,
+            calculatedScore,
+            request.Time,
+            request.FilesRead,
+            request.CommandsUsed,
+            DateTime.Now.ToString("o"));
+
+        var existingIndex = scores.FindIndex(score => score.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
+        string action;
+
+        if (existingIndex >= 0)
         {
-            scores[existingIndex] = newScore;
-            action = "updated";
+            if (newScore.Score > scores[existingIndex].Score)
+            {
+                scores[existingIndex] = newScore;
+                action = "updated";
+            }
+            else
+            {
+                action = "kept_old";
+                newScore = scores[existingIndex];
+            }
         }
         else
         {
-            action = "kept_old";
-            newScore = scores[existingIndex];
+            scores.Add(newScore);
+            action = "added";
         }
+
+        scores = scores
+            .OrderByDescending(score => score.Score)
+            .Take(Limits.MaxEntries)
+            .ToList();
+
+        try
+        {
+            HighscoreStore.Write(scores);
+        }
+        catch (Exception ex)
+        {
+            return Results.Json(new { success = false, error = ex.Message }, statusCode: 500);
+        }
+
+        var rankIndex = scores.FindIndex(score => score.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
+        int? rank = rankIndex >= 0 ? rankIndex + 1 : null;
+
+        var currentSnapshot = scores
+            .Select(score => (score.Name.ToLowerInvariant(), score.Score, score.Time))
+            .ToList();
+
+        if (!currentSnapshot.SequenceEqual(previousSnapshot))
+        {
+            EmailNotifier.TrySend(newScore, rank, action);
+        }
+
+        return Results.Ok(new
+        {
+            success = true,
+            action,
+            rank,
+            score = newScore.Score
+        });
     }
-    else
-    {
-        scores.Add(newScore);
-        action = "added";
-    }
-
-    scores = scores
-        .OrderByDescending(score => score.Score)
-        .Take(Limits.MaxEntries)
-        .ToList();
-
-    try
-    {
-        HighscoreStore.Write(scores);
-    }
-    catch (Exception ex)
-    {
-        return Results.Json(new { success = false, error = ex.Message }, statusCode: 500);
-    }
-
-    var rankIndex = scores.FindIndex(score => score.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
-    int? rank = rankIndex >= 0 ? rankIndex + 1 : null;
-
-    var currentSnapshot = scores
-        .Select(score => (score.Name.ToLowerInvariant(), score.Score, score.Time))
-        .ToList();
-
-    if (!currentSnapshot.SequenceEqual(previousSnapshot))
-    {
-        EmailNotifier.TrySend(newScore, rank, action);
-    }
-
-    return Results.Ok(new
-    {
-        success = true,
-        action,
-        rank,
-        score = newScore.Score
-    });
 });
 
 app.MapGet("/api/coffeemachine/player/{name}", (string name) =>
@@ -174,15 +216,92 @@ static class Limits
 {
     public const int MaxEntries = 10;
     public const int MaxNameLength = 50;
-    public const int MaxScore = 50000;
     public const int MaxTimeSeconds = 3600;
     public const int MaxFilesRead = 500;
     public const int MaxCommandsUsed = 1000;
+    public const int MaxTechnicalCommands = 200;
+}
+
+static partial class NameValidator
+{
+    [GeneratedRegex(@"^[a-zA-Z0-9 _.\-]+$")]
+    private static partial Regex AllowedPattern();
+
+    public static bool IsValid(string name) => AllowedPattern().IsMatch(name);
+}
+
+static class ScoreCalculator
+{
+    private static readonly HashSet<string> ValidTechnicalCmds =
+        ["ps", "free", "top", "env", "systemctl"];
+
+    public static int Calculate(int time, int filesRead, int commandsUsed,
+        bool exploredProc, List<string>? technicalCommands)
+    {
+        var score = 10000;
+
+        if (time < 120) score += 2000;
+        else if (time < 180) score += 1100;
+        else if (time < 240) score += 500;
+
+        if (filesRead <= 6) score += 2000;
+        else if (filesRead <= 10) score += 1500;
+        else if (filesRead <= 15) score += 800;
+
+        var validCount = technicalCommands?
+            .Where(cmd => ValidTechnicalCmds.Any(tech => cmd.StartsWith(tech, StringComparison.OrdinalIgnoreCase)))
+            .Count() ?? 0;
+
+        score += Math.Min(validCount, Limits.MaxTechnicalCommands) * 300;
+
+        if (exploredProc) score += 600;
+
+        if (filesRead > 12) score -= (filesRead - 12) * 100;
+
+        return Math.Max(score, 5000);
+    }
+}
+
+static class RateLimiter
+{
+    private static readonly ConcurrentDictionary<string, DateTime> LastSubmit = new();
+    private static readonly TimeSpan Cooldown = TimeSpan.FromSeconds(60);
+    private static readonly TimeSpan CleanupThreshold = TimeSpan.FromMinutes(5);
+
+    public static bool TryAcquire(string ip)
+    {
+        Cleanup();
+
+        var now = DateTime.UtcNow;
+        if (LastSubmit.TryGetValue(ip, out var last) && now - last < Cooldown)
+        {
+            return false;
+        }
+
+        LastSubmit[ip] = now;
+        return true;
+    }
+
+    internal static void Reset() => LastSubmit.Clear();
+
+    private static void Cleanup()
+    {
+        var cutoff = DateTime.UtcNow - CleanupThreshold;
+        foreach (var entry in LastSubmit)
+        {
+            if (entry.Value < cutoff)
+            {
+                LastSubmit.TryRemove(entry.Key, out _);
+            }
+        }
+    }
 }
 
 static class HighscoreStore
 {
     private const string HighscoreFile = "data/highscores.csv";
+    public static readonly object FileLock = new();
+
     private static readonly string[] CsvHeaders =
     [
         "rank",
@@ -335,6 +454,11 @@ static class HighscoreStore
 
     private static string EscapeCsv(string value)
     {
+        if (value.Length > 0 && value[0] is '=' or '+' or '-' or '@')
+        {
+            value = "'" + value;
+        }
+
         if (value.Contains('"'))
         {
             value = value.Replace("\"", "\"\"");
@@ -434,19 +558,14 @@ sealed record ScoreEntry(
 sealed class SubmitScoreRequest
 {
     public string? Name { get; init; }
-    public int Score { get; init; }
     public int Time { get; init; }
     public int FilesRead { get; init; }
     public int CommandsUsed { get; init; }
+    public bool ExploredProc { get; init; }
+    public List<string>? TechnicalCommands { get; init; }
 
     public bool TryValidate(out string errorMessage)
     {
-        if (Score < 0 || Score > Limits.MaxScore)
-        {
-            errorMessage = "Score out of allowed range";
-            return false;
-        }
-
         if (Time < 0 || Time > Limits.MaxTimeSeconds)
         {
             errorMessage = "Time out of allowed range";
@@ -470,3 +589,4 @@ sealed class SubmitScoreRequest
     }
 }
 
+public partial class Program;
