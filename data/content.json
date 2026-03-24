@@ -73,7 +73,7 @@
       "greeting": "Olá, eu sou",
       "name": "Mateus Silva",
       "title": "Software Developer • BSS • Cloud",
-      "description": "Software Development Engineer II na CSG International, atuando na plataforma BSS Ascendon. Mais de 6 anos de experiência em soluções BSS para operadoras de telecomunicações, com background sólido em billing, análise de dados, operações de produção e desenvolvimento de software.",
+      "description": "Software Development Engineer II na CSG International, trabalhando na plataforma BSS Ascendon. Tenho mais de 6 anos de experiência com soluções BSS para operadoras de telecom, passando por billing, análise de dados, operações de produção e desenvolvimento de software.",
       "cta_primary": "Entre em Contato",
       "cta_secondary": "Ver Projetos"
     },
@@ -81,7 +81,7 @@
       "greeting": "Hello, I am",
       "name": "Mateus Silva",
       "title": "Software Developer • BSS • Cloud",
-      "description": "Software Development Engineer II at CSG International, working on the Ascendon BSS platform. Over 6 years of experience in BSS solutions for telecom operators, with a strong background in billing, data analysis, production operations, and software development.",
+      "description": "Software Development Engineer II at CSG International, working on the Ascendon BSS platform. 6+ years of experience with BSS solutions for telecom operators, across billing, data analysis, production operations, and software development.",
       "cta_primary": "Get in Touch",
       "cta_secondary": "View Projects"
     },
@@ -89,7 +89,7 @@
       "greeting": "Hola, soy",
       "name": "Mateus Silva",
       "title": "Software Developer • BSS • Cloud",
-      "description": "Software Development Engineer II en CSG International, trabajando en la plataforma BSS Ascendon. Más de 6 años de experiencia en soluciones BSS para operadoras de telecomunicaciones, con sólido background en facturación, análisis de datos, operaciones de producción y desarrollo de software.",
+      "description": "Software Development Engineer II en CSG International, trabajando en la plataforma BSS Ascendon. Más de 6 años de experiencia con soluciones BSS para operadoras de telecomunicaciones, pasando por facturación, análisis de datos, operaciones de producción y desarrollo de software.",
       "cta_primary": "Contáctame",
       "cta_secondary": "Ver Proyectos"
     }
@@ -98,8 +98,8 @@
     "pt": {
       "title": "Sobre Mim",
       "paragraphs": [
-        "Sou Software Development Engineer II na CSG International, atuando na plataforma BSS Ascendon. Com mais de 6 anos de experiência em soluções BSS para operadoras de telecomunicações e empresas de serviços digitais, minha trajetória inclui desenvolvimento de software, análise de dados, operações de billing e liderança de equipe. Atualmente focado em desenvolvimento com C#, .NET e ASP.NET Core.",
-        "Meu background em billing e operações de produção me dá uma perspectiva única como desenvolvedor — entendo tanto o lado técnico quanto as necessidades do negócio. Além do trabalho corporativo, sou entusiasta de tecnologia, automação e IA, com projetos práticos como construção e automação de homelab."
+        "Trabalho na CSG International como Software Development Engineer II, na plataforma BSS Ascendon. Já são mais de 6 anos na área de soluções BSS para operadoras de telecom e empresas de serviços digitais. Nesse tempo, passei por desenvolvimento de software, análise de dados, operações de billing e liderança de equipe. Hoje meu foco é desenvolvimento com C#, .NET e ASP.NET Core.",
+        "Ter passado por billing e operações de produção me ajuda como desenvolvedor, porque entendo tanto o lado técnico quanto o que o negócio precisa. Fora do trabalho, gosto de mexer com tecnologia, automação e IA, e tenho projetos pessoais como meu homelab."
       ],
       "stats": [
         {
@@ -119,8 +119,8 @@
     "en": {
       "title": "About Me",
       "paragraphs": [
-        "I am a Software Development Engineer II at CSG International, working on the Ascendon BSS platform. With over 6 years of experience in BSS solutions for telecom operators and digital service companies, my career path includes software development, data analysis, billing operations, and team leadership. Currently focused on development with C#, .NET, and ASP.NET Core.",
-        "My background in billing and production operations gives me a unique perspective as a developer — I understand both the technical side and business needs. Outside corporate work, I am passionate about technology, automation, and AI, with hands-on projects such as building and automating my own homelab."
+        "I work at CSG International as a Software Development Engineer II, on the Ascendon BSS platform. I have over 6 years of experience in BSS solutions for telecom operators and digital service companies, working across software development, data analysis, billing operations, and team leadership. Currently focused on development with C#, .NET, and ASP.NET Core.",
+        "Coming from billing and production operations helps me as a developer, since I understand both the technical side and what the business actually needs. Outside of work, I enjoy technology, automation, and AI, and I keep personal projects like my own homelab."
       ],
       "stats": [
         {
@@ -140,8 +140,8 @@
     "es": {
       "title": "Sobre Mí",
       "paragraphs": [
-        "Soy Software Development Engineer II en CSG International, trabajando en la plataforma BSS Ascendon. Con más de 6 años de experiencia en soluciones BSS para operadoras de telecomunicaciones y empresas de servicios digitales, mi trayectoria incluye desarrollo de software, análisis de datos, operaciones de facturación y liderazgo de equipo. Actualmente enfocado en desarrollo con C#, .NET y ASP.NET Core.",
-        "Mi background en facturación y operaciones de producción me da una perspectiva única como desarrollador — entiendo tanto el lado técnico como las necesidades del negocio. Además del trabajo corporativo, soy entusiasta de la tecnología, automatización e IA, con proyectos prácticos como construcción y automatización de homelab."
+        "Trabajo en CSG International como Software Development Engineer II, en la plataforma BSS Ascendon. Llevo más de 6 años en el área de soluciones BSS para operadoras de telecomunicaciones y empresas de servicios digitales. En ese tiempo, pasé por desarrollo de software, análisis de datos, operaciones de facturación y liderazgo de equipo. Hoy mi enfoque es desarrollo con C#, .NET y ASP.NET Core.",
+        "Haber pasado por facturación y operaciones de producción me ayuda como desarrollador, porque entiendo tanto el lado técnico como lo que el negocio necesita. Fuera del trabajo, me gusta la tecnología, la automatización y la IA, y tengo proyectos personales como mi homelab."
       ],
       "stats": [
         {
@@ -836,9 +836,9 @@
         {
           "title": "Otimização de Sistemas de Billing Legacy",
           "icon": "payment",
-          "context": "Sistemas legados de billing apresentavam alta taxa de erros operacionais (>20%) e processos manuais extensos, impactando SLAs e satisfação do cliente.",
-          "challenge": "Redesenhar procedimentos operacionais, automatizar validações e garantir confiabilidade em ambiente de produção com zero tolerância a falhas financeiras.",
-          "solution": "Implementação de novos procedimentos, automação de validações com Python/SQL, criação de dashboards de monitoramento e treinamento de equipe.",
+          "context": "Os sistemas de billing que a gente operava tinham uma taxa de erro de mais de 20%, com muitos processos manuais. Isso impactava direto nos SLAs e na satisfação dos clientes.",
+          "challenge": "Precisava redesenhar os procedimentos, automatizar as validações e garantir que tudo funcionasse sem falhas em produção, onde erro financeiro não tem espaço.",
+          "solution": "Criei novos procedimentos operacionais, automatizei validações com Python e SQL, montei dashboards de monitoramento e treinei a equipe.",
           "results": [
             "Redução de 80% nos erros operacionais",
             "100% de conformidade nos ciclos de billing",
@@ -856,9 +856,9 @@
         {
           "title": "Pipelines de Análise de Dados em Produção",
           "icon": "database",
-          "context": "Necessidade de análise rápida de grandes volumes de dados de billing para troubleshooting e tomada de decisão em incidentes críticos.",
-          "challenge": "Criar ferramentas que processem milhões de registros rapidamente, com resultados precisos e interface simples para times operacionais.",
-          "solution": "Desenvolvimento de scripts Python otimizados, queries SQL complexas e automações Unix para análise e validação de dados em produção.",
+          "context": "Em incidentes críticos, a gente precisava analisar volumes grandes de dados de billing rápido para entender o que aconteceu e tomar decisão.",
+          "challenge": "Criar ferramentas que processassem milhões de registros rápido, com resultados confiáveis e que qualquer pessoa do time conseguisse usar.",
+          "solution": "Desenvolvi scripts Python otimizados, queries SQL complexas e automações em Unix para análise e validação de dados em produção.",
           "results": [
             "Redução de horas para minutos na análise de dados",
             "Identificação proativa de inconsistências antes do impacto",
@@ -874,23 +874,63 @@
           ]
         },
         {
-          "title": "Infraestrutura Cloud e Automação",
+          "title": "Homelab - Infraestrutura Self-Hosted",
           "icon": "monitoring",
-          "context": "Projetos pessoais de homelab e automação para estudo de tecnologias cloud-native e IA.",
-          "challenge": "Construir infraestrutura escalável, automatizada e de baixo custo para experimentação com serviços cloud e machine learning.",
-          "solution": "Arquitetura baseada em AWS (Lambda, S3, EC2), automação com Python/Bash, CI/CD com GitHub Actions e monitoramento.",
+          "context": "Queria ter um ambiente próprio para rodar meus projetos pessoais, aprender na prática e não depender de serviços pagos.",
+          "challenge": "Montar uma infra fácil de manter, com deploy automatizado e acesso externo seguro, tudo rodando em uma VM no Proxmox.",
+          "solution": "VM Debian no Proxmox com Docker, Cloudflare Tunnel para acesso público, GitHub Actions com self-hosted runner para CI/CD, PostgreSQL compartilhado e scripts de backup com retenção de 30 dias.",
           "results": [
-            "Ambiente de aprendizado hands-on totalmente funcional",
-            "Automação completa de deploy e configuração",
-            "Experimentação com IA e análise de dados"
+            "Vários projetos rodando em produção (portfolio, notas, músicas-igreja)",
+            "Deploy automático via push no GitHub",
+            "Backups diários com restore testado"
           ],
           "tags": [
-            "AWS",
-            "Lambda",
-            "Python",
-            "C++",
-            "CI/CD",
-            "Automation"
+            "Docker",
+            "Proxmox",
+            "GitHub Actions",
+            "Cloudflare",
+            "Bash",
+            "PostgreSQL"
+          ]
+        },
+        {
+          "title": "Sistema de Músicas da Igreja",
+          "icon": "music",
+          "context": "A gente precisava de um jeito melhor de organizar as partituras e repertórios da igreja, sem ficar dependendo de WhatsApp e pastas soltas.",
+          "challenge": "Criar um sistema completo com upload de PDFs, busca com filtros, montagem de repertórios e controle de acesso por perfil.",
+          "solution": "API em ASP.NET Core 9 com EF Core e PostgreSQL, frontend em React com Vite e TypeScript, sistema de permissões (RBAC) e gerenciamento de arquivos via core-system compartilhado.",
+          "results": [
+            "Em produção em cifras.networkmat.uk",
+            "142+ testes automatizados",
+            "Deploy automático via GitHub Actions"
+          ],
+          "tags": [
+            "C#",
+            "ASP.NET Core",
+            "React",
+            "TypeScript",
+            "PostgreSQL",
+            "Docker"
+          ]
+        },
+        {
+          "title": "Gestão Financeira SaaS",
+          "icon": "shopping",
+          "context": "Queria construir um SaaS de verdade, multi-tenant, com tudo que um sistema real precisa: autenticação, permissões, planos, LGPD.",
+          "challenge": "Desenvolver uma plataforma completa de gestão financeira e operacional, com isolamento de dados por workspace e controle de planos.",
+          "solution": "Backend em .NET 9 com EF Core e PostgreSQL, frontend em React 19 com Vite e Tailwind, Hangfire para jobs em background, QuestPDF para recibos e core-system compartilhado entre projetos.",
+          "results": [
+            "Multi-tenant com 3 planos (Free, Pro, Business)",
+            "RBAC com 5 níveis de permissão",
+            "Conformidade LGPD com export e exclusão de dados"
+          ],
+          "tags": [
+            "C#",
+            ".NET 9",
+            "React",
+            "TypeScript",
+            "PostgreSQL",
+            "Docker"
           ]
         }
       ]
@@ -901,9 +941,9 @@
         {
           "title": "Legacy Billing Systems Optimization",
           "icon": "payment",
-          "context": "Legacy billing systems had high operational error rates (>20%) and extensive manual processes, impacting SLAs and customer satisfaction.",
-          "challenge": "Redesign operational procedures, automate validations, and ensure reliability in production with zero tolerance for financial failures.",
-          "solution": "Implementation of new procedures, automation of validations with Python/SQL, creation of monitoring dashboards, and team training.",
+          "context": "The billing systems we operated had an error rate above 20%, with lots of manual processes. This directly impacted SLAs and customer satisfaction.",
+          "challenge": "Needed to redesign the procedures, automate validations, and make sure everything ran without failures in production, where financial errors aren't an option.",
+          "solution": "Created new operational procedures, automated validations with Python and SQL, built monitoring dashboards, and trained the team.",
           "results": [
             "80% reduction in operational errors",
             "100% compliance in billing cycles",
@@ -921,9 +961,9 @@
         {
           "title": "Production Data Analysis Pipelines",
           "icon": "database",
-          "context": "Need for fast analysis of large billing data volumes for troubleshooting and decision-making during critical incidents.",
-          "challenge": "Create tools that process millions of records quickly, with accurate results and simple interface for operational teams.",
-          "solution": "Development of optimized Python scripts, complex SQL queries, and Unix automations for data analysis and validation in production.",
+          "context": "During critical incidents, we needed to analyze large volumes of billing data quickly to understand what happened and make decisions.",
+          "challenge": "Build tools that could process millions of records fast, with reliable results that anyone on the team could use.",
+          "solution": "Built optimized Python scripts, complex SQL queries, and Unix automations for data analysis and validation in production.",
           "results": [
             "Reduced analysis time from hours to minutes",
             "Proactive identification of inconsistencies before impact",
@@ -939,22 +979,63 @@
           ]
         },
         {
-          "title": "Cloud Infrastructure and Automation (Homelab)",
+          "title": "Homelab - Self-Hosted Infrastructure",
           "icon": "monitoring",
-          "context": "Personal homelab and automation projects for studying cloud-native technologies and AI.",
-          "challenge": "Build scalable, automated, and cost-effective infrastructure for experimentation with cloud services and machine learning.",
-          "solution": "AWS-based architecture (Lambda, S3, EC2), automation with Python/Bash, CI/CD with GitHub Actions, and monitoring.",
+          "context": "I wanted my own environment to run personal projects, learn hands-on, and not depend on paid services.",
+          "challenge": "Set up an infrastructure that's easy to maintain, with automated deployments and secure external access, all running on a Proxmox VM.",
+          "solution": "Debian VM on Proxmox with Docker, Cloudflare Tunnel for public access, GitHub Actions with a self-hosted runner for CI/CD, shared PostgreSQL, and backup scripts with 30-day retention.",
           "results": [
-            "Fully functional hands-on learning environment",
-            "Complete deployment and configuration automation",
-            "Experimentation with AI and data analysis"
+            "Multiple projects running in production (portfolio, notes, musicas-igreja)",
+            "Automatic deploy on GitHub push",
+            "Daily backups with tested restore"
           ],
           "tags": [
-            "AWS",
-            "Lambda",
-            "Python",
-            "CI/CD",
-            "Automation"
+            "Docker",
+            "Proxmox",
+            "GitHub Actions",
+            "Cloudflare",
+            "Bash",
+            "PostgreSQL"
+          ]
+        },
+        {
+          "title": "Church Music Management System",
+          "icon": "music",
+          "context": "We needed a better way to organize sheet music and repertoires at church, instead of relying on WhatsApp and scattered folders.",
+          "challenge": "Build a complete system with PDF uploads, filtered search, repertoire assembly, and role-based access control.",
+          "solution": "ASP.NET Core 9 API with EF Core and PostgreSQL, React frontend with Vite and TypeScript, RBAC permissions and shared file management via core-system.",
+          "results": [
+            "Running in production at cifras.networkmat.uk",
+            "142+ automated tests",
+            "Automatic deploy via GitHub Actions"
+          ],
+          "tags": [
+            "C#",
+            "ASP.NET Core",
+            "React",
+            "TypeScript",
+            "PostgreSQL",
+            "Docker"
+          ]
+        },
+        {
+          "title": "Financial Management SaaS",
+          "icon": "shopping",
+          "context": "I wanted to build a real SaaS, multi-tenant, with everything a production system needs: auth, permissions, plans, LGPD compliance.",
+          "challenge": "Develop a complete financial and operational management platform, with data isolation per workspace and plan-based limits.",
+          "solution": ".NET 9 backend with EF Core and PostgreSQL, React 19 frontend with Vite and Tailwind, Hangfire for background jobs, QuestPDF for receipts, and a core-system shared across projects.",
+          "results": [
+            "Multi-tenant with 3 plans (Free, Pro, Business)",
+            "Full RBAC with 5 permission levels",
+            "LGPD compliance with data export and erasure"
+          ],
+          "tags": [
+            "C#",
+            ".NET 9",
+            "React",
+            "TypeScript",
+            "PostgreSQL",
+            "Docker"
           ]
         }
       ]
@@ -965,9 +1046,9 @@
         {
           "title": "Optimización de Sistemas de Facturación Legacy",
           "icon": "payment",
-          "context": "Sistemas legados de facturación presentaban alta tasa de errores operacionales (>20%) y procesos manuales extensos, impactando SLAs y satisfacción del cliente.",
-          "challenge": "Rediseñar procedimientos operacionales, automatizar validaciones y garantizar confiabilidad en ambiente de producción con cero tolerancia a fallas financieras.",
-          "solution": "Implementación de nuevos procedimientos, automatización de validaciones con Python/SQL, creación de dashboards de monitoreo y entrenamiento de equipo.",
+          "context": "Los sistemas de facturación que operábamos tenían una tasa de error de más del 20%, con muchos procesos manuales. Esto impactaba directo en los SLAs y la satisfacción de los clientes.",
+          "challenge": "Necesitaba rediseñar los procedimientos, automatizar las validaciones y garantizar que todo funcionara sin fallas en producción, donde el error financiero no tiene espacio.",
+          "solution": "Creé nuevos procedimientos operacionales, automaticé validaciones con Python y SQL, monté dashboards de monitoreo y entrené al equipo.",
           "results": [
             "Reducción de 80% en errores operacionales",
             "100% de conformidad en ciclos de facturación",
@@ -985,9 +1066,9 @@
         {
           "title": "Pipelines de Análisis de Datos en Producción",
           "icon": "database",
-          "context": "Necesidad de análisis rápido de grandes volúmenes de datos de facturación para troubleshooting y toma de decisión en incidentes críticos.",
-          "challenge": "Crear herramientas que procesen millones de registros rápidamente, con resultados precisos e interfaz simple para equipos operacionales.",
-          "solution": "Desarrollo de scripts Python optimizados, queries SQL complejas y automatizaciones Unix para análisis y validación de datos en producción.",
+          "context": "En incidentes críticos, necesitábamos analizar grandes volúmenes de datos de facturación rápidamente para entender qué pasó y tomar decisiones.",
+          "challenge": "Crear herramientas que procesaran millones de registros rápido, con resultados confiables y que cualquier persona del equipo pudiera usar.",
+          "solution": "Desarrollé scripts Python optimizados, queries SQL complejas y automatizaciones en Unix para análisis y validación de datos en producción.",
           "results": [
             "Reducción de horas a minutos en análisis de datos",
             "Identificación proactiva de inconsistencias antes del impacto",
@@ -1003,23 +1084,63 @@
           ]
         },
         {
-          "title": "Infraestructura Cloud y Automatización (Homelab)",
+          "title": "Homelab - Infraestructura Self-Hosted",
           "icon": "monitoring",
-          "context": "Proyectos personales de homelab y automatización para estudio de tecnologías cloud-native e IA.",
-          "challenge": "Construir infraestructura escalable, automatizada y de bajo costo para experimentación con servicios cloud y machine learning.",
-          "solution": "Arquitectura basada en AWS (Lambda, S3, EC2), automatización con Python/Bash, CI/CD con GitHub Actions y monitoreo.",
+          "context": "Quería tener un ambiente propio para correr mis proyectos personales, aprender en la práctica y no depender de servicios pagos.",
+          "challenge": "Montar una infra fácil de mantener, con deploy automatizado y acceso externo seguro, todo corriendo en una VM de Proxmox.",
+          "solution": "VM Debian en Proxmox con Docker, Cloudflare Tunnel para acceso público, GitHub Actions con self-hosted runner para CI/CD, PostgreSQL compartido y scripts de backup con retención de 30 días.",
           "results": [
-            "Ambiente de aprendizaje hands-on totalmente funcional",
-            "Automatización completa de deploy y configuración",
-            "Experimentación con IA y análisis de datos"
+            "Varios proyectos corriendo en producción (portfolio, notas, músicas-igreja)",
+            "Deploy automático via push en GitHub",
+            "Backups diarios con restore probado"
           ],
           "tags": [
-            "AWS",
-            "Lambda",
-            "Python",
-            "C++",
-            "CI/CD",
-            "Automatización"
+            "Docker",
+            "Proxmox",
+            "GitHub Actions",
+            "Cloudflare",
+            "Bash",
+            "PostgreSQL"
+          ]
+        },
+        {
+          "title": "Sistema de Músicas de la Iglesia",
+          "icon": "music",
+          "context": "Necesitábamos una mejor forma de organizar las partituras y repertorios de la iglesia, sin depender de WhatsApp y carpetas sueltas.",
+          "challenge": "Crear un sistema completo con upload de PDFs, búsqueda con filtros, armado de repertorios y control de acceso por perfil.",
+          "solution": "API en ASP.NET Core 9 con EF Core y PostgreSQL, frontend en React con Vite y TypeScript, sistema de permisos (RBAC) y gestión de archivos via core-system compartido.",
+          "results": [
+            "En producción en cifras.networkmat.uk",
+            "142+ tests automatizados",
+            "Deploy automático via GitHub Actions"
+          ],
+          "tags": [
+            "C#",
+            "ASP.NET Core",
+            "React",
+            "TypeScript",
+            "PostgreSQL",
+            "Docker"
+          ]
+        },
+        {
+          "title": "Gestión Financiera SaaS",
+          "icon": "shopping",
+          "context": "Quería construir un SaaS de verdad, multi-tenant, con todo lo que un sistema real necesita: autenticación, permisos, planes, LGPD.",
+          "challenge": "Desarrollar una plataforma completa de gestión financiera y operacional, con aislamiento de datos por workspace y control de planes.",
+          "solution": "Backend en .NET 9 con EF Core y PostgreSQL, frontend en React 19 con Vite y Tailwind, Hangfire para jobs en background, QuestPDF para recibos y core-system compartido entre proyectos.",
+          "results": [
+            "Multi-tenant con 3 planes (Free, Pro, Business)",
+            "RBAC con 5 niveles de permisos",
+            "Conformidad LGPD con export y exclusión de datos"
+          ],
+          "tags": [
+            "C#",
+            ".NET 9",
+            "React",
+            "TypeScript",
+            "PostgreSQL",
+            "Docker"
           ]
         }
       ]
